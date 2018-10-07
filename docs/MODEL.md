@@ -10,3 +10,15 @@ mutations. Each commit is a transcription event; each file is a locus that
 mutates at its own rate. The tool reads that record and draws two maps — a
 **helix** (files threaded through time) and a **co-change atlas** (files bound
 by how often they mutate together). Everything below is descriptive
+cartography, not evaluation.
+
+## Input model
+
+The unit of input is a **commit**, parsed from `git log --numstat` (or from a
+captured *fixture log* with identical structure). Each commit carries:
+
+| Field          | Source              | Notes                                        |
+| -------------- | ------------------- | -------------------------------------------- |
+| `hash`         | `%H`                | Commit identity.                             |
+| `author_name`  | `%an`               | Display name.                                |
+| `author_email` | `%ae`               | Preferred identity key (more stable).        |
