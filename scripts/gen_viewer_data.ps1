@@ -3,3 +3,5 @@
 # Run from the repo root:  pwsh -File scripts/gen_viewer_data.ps1
 
 $ErrorActionPreference = 'Stop'
+$root = Join-Path $PSScriptRoot '..'
+Push-Location $root
