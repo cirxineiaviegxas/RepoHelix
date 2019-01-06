@@ -18,3 +18,24 @@ pub enum Command {
     ViewerData(ViewerOpts),
     Help,
     Version,
+}
+
+/// Where history comes from: a live repository or a captured fixture log.
+#[derive(Debug, Clone, PartialEq)]
+pub enum Source {
+    Repo(PathBuf),
+    Log(PathBuf),
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct AnalyzeOpts {
+    pub source: Source,
+    pub format: Format,
+    pub pretty: bool,
+    pub max_commits: Option<usize>,
+    pub out: Option<PathBuf>,
+    pub params: Params,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct ViewerOpts {
