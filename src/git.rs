@@ -7,3 +7,13 @@
 use std::io;
 use std::path::Path;
 use std::process::Command;
+
+/// The record separator injected between commits. It is an ASCII unit
+/// separator (0x1f) followed by a sentinel token, chosen so it cannot appear
+/// in normal commit metadata.
+pub const COMMIT_SEP: &str = "\x1eREPOHELIX_COMMIT\x1e";
+
+/// Field separator within a commit header line (ASCII unit separator).
+pub const FIELD_SEP: char = '\x1f';
+
+/// Errors that can occur while talking to git.
