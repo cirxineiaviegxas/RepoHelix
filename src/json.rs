@@ -22,3 +22,15 @@ pub enum Json {
 }
 
 impl Json {
+    /// Convenience constructor for a string value.
+    pub fn str(s: impl Into<String>) -> Json {
+        Json::Str(s.into())
+    }
+
+    /// Build an object from an ordered list of key/value pairs.
+    pub fn obj(pairs: Vec<(&str, Json)>) -> Json {
+        Json::Object(pairs.into_iter().map(|(k, v)| (k.to_string(), v)).collect())
+    }
+
+    /// Serialize to a compact JSON string (no insignificant whitespace).
+    pub fn to_compact(&self) -> String {
