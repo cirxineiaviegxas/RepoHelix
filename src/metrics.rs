@@ -30,3 +30,35 @@ pub struct FileStat {
 }
 
 /// A co-change relationship between two files.
+#[derive(Debug, Clone, PartialEq)]
+pub struct CoChange {
+    pub a: String,
+    pub b: String,
+    /// Commits in which both files changed together.
+    pub together: u64,
+    /// Commits touching `a`.
+    pub count_a: u64,
+    /// Commits touching `b`.
+    pub count_b: u64,
+    /// Jaccard-like coupling strength in [0, 1]:
+    /// together / (count_a + count_b - together).
+    pub strength: f64,
+    /// Confidence: P(b changes | a changes) = together / count_a, using the
+    /// more frequently changed file as the antecedent for stability.
+    pub confidence: f64,
+}
+
+/// A hotspot combines high churn with high change frequency. Files that are
+/// both large-churn and frequently touched tend to concentrate maintenance
+/// effort and risk.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Hotspot {
+    pub path: String,
+    pub churn: u64,
+    pub commits: u64,
+    /// Normalized score in [0, 1]: geometric blend of normalized churn and
+    /// normalized commit frequency.
+    pub score: f64,
+}
+
+/// Ownership distribution for a single file.
