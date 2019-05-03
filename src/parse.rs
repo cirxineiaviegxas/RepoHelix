@@ -11,3 +11,10 @@
 use crate::git::{COMMIT_SEP, FIELD_SEP};
 use crate::model::{Commit, FileChange, History};
 
+/// Parse a raw log string into a [`History`].
+///
+/// Malformed records are skipped defensively rather than aborting the whole
+/// parse, so a single corrupt line cannot break an otherwise valid import.
+pub fn parse_log(raw: &str) -> History {
+    let mut commits = Vec::new();
+
