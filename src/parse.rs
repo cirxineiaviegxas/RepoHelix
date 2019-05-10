@@ -18,3 +18,9 @@ use crate::model::{Commit, FileChange, History};
 pub fn parse_log(raw: &str) -> History {
     let mut commits = Vec::new();
 
+    // Records are separated by COMMIT_SEP. The first split segment before the
+    // first separator is empty (or leading whitespace) and is ignored.
+    for record in raw.split(COMMIT_SEP) {
+        let record = record.trim_matches(['\n', '\r']);
+        if record.is_empty() {
+            continue;
