@@ -15,3 +15,20 @@ pub fn to_json(analysis: &Analysis, pretty: bool) -> String {
 }
 
 fn build_json(a: &Analysis) -> Json {
+    let summary = Json::obj(vec![
+        ("commits", Json::Int(a.summary.commits as i64)),
+        ("files", Json::Int(a.summary.files as i64)),
+        ("authors", Json::Int(a.summary.authors as i64)),
+        ("total_churn", Json::Int(a.summary.total_churn as i64)),
+        ("first_commit", Json::Int(a.summary.first_commit)),
+        ("last_commit", Json::Int(a.summary.last_commit)),
+        ("span_days", Json::Int(a.summary.span_days)),
+    ]);
+
+    let files = Json::Array(
+        a.file_stats
+            .iter()
+            .map(|f| {
+                Json::obj(vec![
+                    ("path", Json::str(&f.path)),
+                    ("commits", Json::Int(f.commits as i64)),
