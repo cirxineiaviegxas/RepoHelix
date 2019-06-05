@@ -21,3 +21,26 @@ pub fn build(analysis: &Analysis, max_nodes: usize) -> Json {
         .collect();
 
     // Assign stable indices to selected files.
+    let mut index_of: BTreeMap<&str, usize> = BTreeMap::new();
+    for (i, p) in selected.iter().enumerate() {
+        index_of.insert(*p, i);
+    }
+
+    let nodes = Json::Array(
+        analysis
+            .file_stats
+            .iter()
+            .take(max_nodes)
+            .map(|f| {
+                let own = analysis
+                    .ownership
+                    .iter()
+                    .find(|o| o.path == f.path)
+                    .map(|o| o.concentration)
+                    .unwrap_or(0.0);
+                Json::obj(vec![
+                    ("path", Json::str(&f.path)),
+                    ("churn", Json::Int(f.churn as i64)),
+                    ("commits", Json::Int(f.commits as i64)),
+                    ("authors", Json::Int(f.authors as i64)),
+                    ("concentration", Json::Float(own)),
