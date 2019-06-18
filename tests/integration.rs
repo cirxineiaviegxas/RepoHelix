@@ -6,3 +6,11 @@
 use std::path::Path;
 
 use repohelix::metrics::{analyze, Params};
+use repohelix::{load_from_log, report, viewer};
+
+fn fixture_path() -> &'static Path {
+    Path::new("fixtures/nebula.gitlog")
+}
+
+#[test]
+fn fixture_loads_expected_shape() {
