@@ -7,3 +7,8 @@
  */
 /** Linear interpolation. */
 export function lerp(a, b, t) {
+    return a + (b - a) * t;
+}
+/** Clamp a value into [lo, hi]. */
+export function clamp(x, lo, hi) {
+    return Math.max(lo, Math.min(hi, x));
