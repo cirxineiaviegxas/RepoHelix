@@ -29,3 +29,14 @@ test("lerp interpolates", () => {
     assert.equal(lerp(2, 4, 0), 2);
 });
 test("clamp bounds values", () => {
+    assert.equal(clamp(-1, 0, 1), 0);
+    assert.equal(clamp(2, 0, 1), 1);
+    assert.equal(clamp(0.4, 0, 1), 0.4);
+});
+test("concentrationColour endpoints differ", () => {
+    const low = concentrationColour(0);
+    const high = concentrationColour(1);
+    assert.notEqual(low, high);
+    assert.match(low, /^rgb\(\d+,\d+,\d+\)$/);
+});
+test("churnRadius grows with churn and handles zero max", () => {
