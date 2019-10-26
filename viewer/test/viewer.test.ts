@@ -7,3 +7,12 @@ import assert from "node:assert/strict";
 import {
   basename,
   churnRadius,
+  clamp,
+  concentrationColour,
+  helixOrder,
+  lerp,
+  linksAreValid,
+  maxChurn,
+  ringPoint,
+  summaryText,
+  type ViewerData,
