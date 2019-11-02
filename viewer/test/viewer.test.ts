@@ -16,3 +16,12 @@ import {
   ringPoint,
   summaryText,
   type ViewerData,
+} from "../src/core.js";
+
+let passed = 0;
+function test(name: string, fn: () => void): void {
+  fn();
+  passed += 1;
+  console.log(`ok - ${name}`);
+}
+
