@@ -17,3 +17,8 @@ export function clamp(x, lo, hi) {
  * Map a concentration value (0..1) to an rgb() colour. Low concentration
  * (shared stewardship) reads as calm teal; high concentration (single-owner /
  * bus-factor risk) reads as warm amber. This is a risk gradient, never a value
+ * judgment about any contributor.
+ */
+export function concentrationColour(c) {
+    const t = clamp(c, 0, 1);
+    const r = Math.round(lerp(40, 240, t));
