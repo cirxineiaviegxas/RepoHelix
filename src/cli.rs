@@ -60,3 +60,24 @@ impl PartialEq for Params {
             && self.top_cochange == other.top_cochange
             && self.top_hotspots == other.top_hotspots
             && self.cluster_gap_secs == other.cluster_gap_secs
+            && self.max_files_for_cochange == other.max_files_for_cochange
+    }
+}
+
+/// Parse arguments (excluding the program name).
+pub fn parse(args: &[String]) -> Result<Command, String> {
+    let mut iter = args.iter();
+    let sub = match iter.next() {
+        None => return Ok(Command::Help),
+        Some(s) => s.as_str(),
+    };
+
+    match sub {
+        "help" | "--help" | "-h" => Ok(Command::Help),
+        "version" | "--version" | "-V" => Ok(Command::Version),
+        "analyze" => parse_analyze(args[1..].to_vec()),
+        "viewer-data" => parse_viewer(args[1..].to_vec()),
+        other => Err(format!("unknown command '{other}'. Try 'repohelix help'.")),
+    }
+}
+
