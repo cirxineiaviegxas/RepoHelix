@@ -14,3 +14,12 @@ fn fixture_path() -> &'static Path {
 
 #[test]
 fn fixture_loads_expected_shape() {
+    let history = load_from_log(fixture_path(), None).expect("fixture should load");
+    assert_eq!(history.commit_count(), 24, "fixture has 24 commits");
+    // Four distinct author identities.
+    let analysis = analyze(&history, &Params::default());
+    assert_eq!(analysis.summary.authors, 4);
+    assert_eq!(analysis.summary.files, 18);
+}
+
+#[test]
