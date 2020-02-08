@@ -22,3 +22,7 @@ export function clamp(x, lo, hi) {
 export function concentrationColour(c) {
     const t = clamp(c, 0, 1);
     const r = Math.round(lerp(40, 240, t));
+    const g = Math.round(lerp(200, 170, t));
+    const b = Math.round(lerp(180, 60, t));
+    return `rgb(${r},${g},${b})`;
+}
