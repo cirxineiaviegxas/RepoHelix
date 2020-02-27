@@ -81,3 +81,24 @@ pub fn parse(args: &[String]) -> Result<Command, String> {
     }
 }
 
+struct Cursor {
+    args: Vec<String>,
+    idx: usize,
+}
+
+impl Cursor {
+    fn new(args: Vec<String>) -> Self {
+        Cursor { args, idx: 0 }
+    }
+    fn next(&mut self) -> Option<String> {
+        let v = self.args.get(self.idx).cloned();
+        if v.is_some() {
+            self.idx += 1;
+        }
+        v
+    }
+    fn value(&mut self, flag: &str) -> Result<String, String> {
+        self.next()
+            .ok_or_else(|| format!("flag '{flag}' requires a value"))
+    }
+}
