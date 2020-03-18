@@ -34,3 +34,15 @@ impl Json {
 
     /// Serialize to a compact JSON string (no insignificant whitespace).
     pub fn to_compact(&self) -> String {
+        let mut out = String::new();
+        self.write_compact(&mut out);
+        out
+    }
+
+    /// Serialize to a pretty-printed JSON string using two-space indentation.
+    pub fn to_pretty(&self) -> String {
+        let mut out = String::new();
+        self.write_pretty(&mut out, 0);
+        out
+    }
+
