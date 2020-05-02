@@ -11,3 +11,6 @@ helix and a co-change atlas — with a standard-library-only Rust core and a
 dependency-free TypeScript viewer.
 
 ### Added
+
+- **CLI** with `analyze`, `viewer-data`, `help`, and `version` commands.
+- **Live repository analysis** via non-interactive `git log --numstat`
