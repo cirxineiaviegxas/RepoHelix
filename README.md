@@ -21,3 +21,27 @@
   <code>nebula</code> fixture. No remote media, no tracking, no build step to see them.</em>
 </p>
 
+---
+
+## The metaphor, and why it matters
+
+Most history tools hand you a flat list of commits. `repohelix` treats history as
+what it actually is: a **genome**. Every commit is a transcription event. Every
+file is a locus that mutates at its own tempo. Some loci mutate together, bound
+by an invisible regulatory logic. Some are edited by a single hand for years;
+others are touched by the whole lab.
+
+Two complementary readings fall out of that lens:
+
+- **DNA (the helix).** Files threaded along a double strand in the order they
+  first appeared. Radius encodes *churn* — how much text has flowed through the
+  locus. Colour encodes *ownership concentration* — teal for shared stewardship,
+  amber for single-owner (bus-factor) risk. Busy files pulse faster.
+- **Cartography (the atlas).** The same files placed on a ring, with chords
+  drawn between those that mutate together. A heavy, straight chord is a tight
+  **temporal coupling** — two files that change in lockstep even if they live in
+  different directories. This is the map that reveals hidden dependencies and
+  missing abstractions.
+
+The two views answer different questions. The helix asks *"where does effort and
+risk accumulate over time?"* The atlas asks *"what is secretly wired to what?"*
