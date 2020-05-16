@@ -45,3 +45,26 @@ Two complementary readings fall out of that lens:
 
 The two views answer different questions. The helix asks *"where does effort and
 risk accumulate over time?"* The atlas asks *"what is secretly wired to what?"*
+
+> **A promise up front:** every number `repohelix` produces describes *code and
+> change activity* — never people. Ownership concentration is a knowledge-risk
+> signal (the classic *bus factor*), not a performance score. See
+> [Metrics are not about people](#metrics-are-not-about-people) and
+> [`docs/MODEL.md`](docs/MODEL.md).
+
+---
+
+## Table of contents
+
+- [Feature tour](#feature-tour)
+- [Install and build](#install-and-build)
+- [Quick start (30 seconds)](#quick-start-30-seconds)
+- [The command line](#the-command-line)
+- [What it computes](#what-it-computes)
+- [Output formats](#output-formats)
+- [The interactive viewer](#the-interactive-viewer)
+- [The fixture format (deterministic demos)](#the-fixture-format-deterministic-demos)
+- [Architecture](#architecture)
+- [Metrics are not about people](#metrics-are-not-about-people)
+- [Testing](#testing)
+- [Design constraints](#design-constraints)
