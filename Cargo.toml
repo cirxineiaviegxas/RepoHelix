@@ -2,3 +2,5 @@
 name = "repohelix"
 version = "0.1.0"
 edition = "2021"
+description = "Git history architecture and temporal-coupling explorer built on the Rust standard library"
+license = "MIT"
