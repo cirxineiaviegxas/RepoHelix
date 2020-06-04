@@ -32,3 +32,20 @@ fn build_json(a: &Analysis) -> Json {
                 Json::obj(vec![
                     ("path", Json::str(&f.path)),
                     ("commits", Json::Int(f.commits as i64)),
+                    ("added", Json::Int(f.added as i64)),
+                    ("removed", Json::Int(f.removed as i64)),
+                    ("churn", Json::Int(f.churn as i64)),
+                    ("authors", Json::Int(f.authors as i64)),
+                    ("first_seen", Json::Int(f.first_seen)),
+                    ("last_seen", Json::Int(f.last_seen)),
+                ])
+            })
+            .collect(),
+    );
+
+    let cochanges = Json::Array(
+        a.co_changes
+            .iter()
+            .map(|c| {
+                Json::obj(vec![
+                    ("a", Json::str(&c.a)),
