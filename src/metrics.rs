@@ -62,3 +62,35 @@ pub struct Hotspot {
 }
 
 /// Ownership distribution for a single file.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Ownership {
+    pub path: String,
+    /// Distinct author identities.
+    pub authors: u64,
+    /// Fraction of commits from the single most active identity (0..1).
+    pub top_share: f64,
+    /// Normalized Herfindahl–Hirschman Index of commit shares in [0, 1].
+    /// 1.0 means a single identity made every change (maximal concentration,
+    /// i.e. a bus-factor of one). Lower values mean shared stewardship.
+    pub concentration: f64,
+    /// Anonymized label for the most active identity (e.g. "author#1").
+    pub top_identity_label: String,
+}
+
+/// A temporal cluster is a burst of commits separated from neighbors by a gap
+/// larger than the chosen threshold. Clusters approximate development sessions
+/// or release pushes.
+#[derive(Debug, Clone, PartialEq)]
+pub struct TemporalCluster {
+    pub index: usize,
+    pub start: i64,
+    pub end: i64,
+    pub commits: u64,
+    /// Distinct files touched during the cluster.
+    pub files_touched: u64,
+    /// Total churn during the cluster.
+    pub churn: u64,
+}
+
+/// The complete analysis bundle.
+#[derive(Debug, Clone)]
