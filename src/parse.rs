@@ -24,3 +24,10 @@ pub fn parse_log(raw: &str) -> History {
         let record = record.trim_matches(['\n', '\r']);
         if record.is_empty() {
             continue;
+        }
+        if let Some(commit) = parse_record(record) {
+            commits.push(commit);
+        }
+    }
+
+    History::new(commits)
