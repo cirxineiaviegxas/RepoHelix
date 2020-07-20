@@ -26,3 +26,6 @@ jobs:
             target
           key: cargo-${{ runner.os }}-${{ hashFiles('Cargo.lock') }}
 
+      - name: Format check
+        run: cargo fmt --check
+
