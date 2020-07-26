@@ -102,3 +102,24 @@ impl Cursor {
             .ok_or_else(|| format!("flag '{flag}' requires a value"))
     }
 }
+
+fn parse_source(repo: Option<PathBuf>, log: Option<PathBuf>) -> Result<Source, String> {
+    match (repo, log) {
+        (Some(_), Some(_)) => Err("choose only one of --repo or --log".to_string()),
+        (Some(r), None) => Ok(Source::Repo(r)),
+        (None, Some(l)) => Ok(Source::Log(l)),
+        // Default: analyze the current directory as a repository.
+        (None, None) => Ok(Source::Repo(PathBuf::from("."))),
+    }
+}
+
+fn parse_analyze(args: Vec<String>) -> Result<Command, String> {
+    let mut c = Cursor::new(args);
+    let mut repo = None;
+    let mut log = None;
+    let mut format = Format::Text;
+    let mut pretty = true;
+    let mut max_commits = None;
+    let mut out = None;
+    let mut params = Params::default();
+
