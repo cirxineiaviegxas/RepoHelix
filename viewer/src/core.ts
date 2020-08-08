@@ -20,3 +20,14 @@ export interface ViewerNode {
 /** A co-change link referencing node indices. */
 export interface ViewerLink {
   source: number;
+  target: number;
+  strength: number;
+  together: number;
+}
+
+/** A temporal cluster (development session). */
+export interface ViewerCluster {
+  index: number;
+  start: number;
+  end: number;
+  commits: number;
