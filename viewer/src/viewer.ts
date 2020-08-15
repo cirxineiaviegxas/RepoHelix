@@ -33,3 +33,39 @@ const SVG_NS = "http://www.w3.org/2000/svg";
 function el(name: string, attrs: Record<string, string | number> = {}): SVGElement {
   const node = document.createElementNS(SVG_NS, name);
   for (const [k, v] of Object.entries(attrs)) {
+    node.setAttribute(k, String(v));
+  }
+  return node;
+}
+
+/** Render the double-helix strand view into the given SVG element. */
+export function renderHelix(
+  svg: SVGElement,
+  data: ViewerData,
+  opts: { width: number; height: number },
+): void {
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  svg.setAttribute("viewBox", `0 0 ${opts.width} ${opts.height}`);
+
+  const nodes = data.nodes;
+  const order = helixOrder(nodes);
+  const maxC = maxChurn(nodes);
+
+  const cx = opts.width / 2;
+  const topPad = 40;
+  const usableH = opts.height - topPad - 40;
+  const amp = Math.min(opts.width * 0.32, 220);
+  const turns = 3.2;
+
+  const strandA = el("path", { fill: "none", stroke: "#2b6f6a", "stroke-width": 2, opacity: 0.5 });
+  const strandB = el("path", { fill: "none", stroke: "#7a5a2b", "stroke-width": 2, opacity: 0.5 });
+  let dA = "";
+  let dB = "";
+  const steps = 240;
+  for (let s = 0; s <= steps; s++) {
+    const t = s / steps;
+    const y = topPad + t * usableH;
+    const angle = t * turns * Math.PI * 2;
+    const xA = cx + Math.sin(angle) * amp;
+    const xB = cx + Math.sin(angle + Math.PI) * amp;
+    dA += `${s === 0 ? "M" : "L"}${xA.toFixed(2)},${y.toFixed(2)} `;
