@@ -4,3 +4,5 @@ version = "0.1.0"
 edition = "2021"
 description = "Git history architecture and temporal-coupling explorer built on the Rust standard library"
 license = "MIT"
+authors = ["repohelix contributors"]
+repository = "https://example.invalid/repohelix"
