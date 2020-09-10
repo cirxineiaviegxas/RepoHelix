@@ -8,3 +8,8 @@
 # demos show realistic churn, co-change coupling, hotspots and clusters.
 
 $ErrorActionPreference = 'Stop'
+
+$SEP = [char]0x1e + 'REPOHELIX_COMMIT' + [char]0x1e
+$FS  = [char]0x1f
+
+# Author identities (synthetic; any resemblance to real people is coincidental).
