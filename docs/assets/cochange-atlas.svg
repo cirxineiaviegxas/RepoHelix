@@ -13,3 +13,8 @@
     </radialGradient>
     <radialGradient id="core" cx="0.5" cy="0.5" r="0.5">
       <stop offset="0" stop-color="#43c8bd" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#43c8bd" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="640" height="520" fill="url(#atlasbg)"/>
