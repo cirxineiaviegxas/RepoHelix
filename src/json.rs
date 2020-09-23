@@ -59,3 +59,15 @@ impl Json {
                 out.push('[');
                 for (i, item) in items.iter().enumerate() {
                     if i > 0 {
+                        out.push(',');
+                    }
+                    item.write_compact(out);
+                }
+                out.push(']');
+            }
+            Json::Object(pairs) => {
+                out.push('{');
+                for (i, (k, v)) in pairs.iter().enumerate() {
+                    if i > 0 {
+                        out.push(',');
+                    }
