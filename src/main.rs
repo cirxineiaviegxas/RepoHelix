@@ -16,3 +16,7 @@ fn main() -> ExitCode {
             let _ = writeln!(std::io::stderr(), "repohelix: {msg}");
             ExitCode::FAILURE
         }
+    }
+}
+
+fn run(args: &[String]) -> Result<(), String> {
