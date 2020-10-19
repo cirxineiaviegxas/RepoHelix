@@ -27,3 +27,13 @@ pub enum GitError {
     Encoding,
 }
 
+impl std::fmt::Display for GitError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            GitError::Spawn(e) => write!(f, "could not run git: {e}"),
+            GitError::Failed { code, stderr } => {
+                let code = code
+                    .map(|c| c.to_string())
+                    .unwrap_or_else(|| "signal".into());
+                write!(f, "git exited with status {code}: {}", stderr.trim())
+            }
