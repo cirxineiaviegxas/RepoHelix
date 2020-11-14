@@ -26,3 +26,8 @@ export function concentrationColour(c) {
     const b = Math.round(lerp(180, 60, t));
     return `rgb(${r},${g},${b})`;
 }
+/** Scale churn to a node radius with a gentle square-root curve. */
+export function churnRadius(churn, maxChurn) {
+    if (maxChurn <= 0)
+        return 3;
+    const t = Math.sqrt(churn / maxChurn);
