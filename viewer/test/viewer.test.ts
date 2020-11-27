@@ -43,3 +43,13 @@ function sample(): ViewerData {
 test("lerp interpolates", () => {
   assert.equal(lerp(0, 10, 0.5), 5);
   assert.equal(lerp(2, 4, 0), 2);
+});
+
+test("clamp bounds values", () => {
+  assert.equal(clamp(-1, 0, 1), 0);
+  assert.equal(clamp(2, 0, 1), 1);
+  assert.equal(clamp(0.4, 0, 1), 0.4);
+});
+
+test("concentrationColour endpoints differ", () => {
+  const low = concentrationColour(0);
