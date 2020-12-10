@@ -13,3 +13,8 @@ $SEP = [char]0x1e + 'REPOHELIX_COMMIT' + [char]0x1e
 $FS  = [char]0x1f
 
 # Author identities (synthetic; any resemblance to real people is coincidental).
+$authors = @{
+    ada   = @('Ada Reyes',   'ada@nebula.example')
+    bo    = @('Bo Tanaka',   'bo@nebula.example')
+    cy    = @('Cy Okafor',   'cy@nebula.example')
+    dee   = @('Dee Marsh',   'dee@nebula.example')
