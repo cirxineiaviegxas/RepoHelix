@@ -31,3 +31,10 @@ pub fn parse_log(raw: &str) -> History {
     }
 
     History::new(commits)
+}
+
+fn parse_record(record: &str) -> Option<Commit> {
+    let mut lines = record.lines();
+    let header = lines.next()?;
+
+    let mut fields = header.split(FIELD_SEP);
