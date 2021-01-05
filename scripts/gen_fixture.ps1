@@ -18,3 +18,8 @@ $authors = @{
     bo    = @('Bo Tanaka',   'bo@nebula.example')
     cy    = @('Cy Okafor',   'cy@nebula.example')
     dee   = @('Dee Marsh',   'dee@nebula.example')
+}
+
+# Each commit: hash, author key, unix time, subject, and file numstat rows
+# as "added removed path". Times are chosen to form 4 development sessions
+# (clusters) separated by multi-day gaps.
