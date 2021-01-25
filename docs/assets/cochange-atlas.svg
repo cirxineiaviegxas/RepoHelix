@@ -23,3 +23,8 @@
 
   <!-- Centre glow that breathes. -->
   <circle cx="320" cy="290" r="150" fill="url(#core)">
+    <animate attributeName="r" values="130;165;130" dur="7s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Guide ring. -->
+  <circle cx="320" cy="290" r="170" fill="none" stroke="#1d3330" stroke-width="1.2" opacity="0.7"/>
