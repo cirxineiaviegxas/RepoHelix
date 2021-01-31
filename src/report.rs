@@ -66,3 +66,20 @@ fn build_json(a: &Analysis) -> Json {
             .map(|h| {
                 Json::obj(vec![
                     ("path", Json::str(&h.path)),
+                    ("churn", Json::Int(h.churn as i64)),
+                    ("commits", Json::Int(h.commits as i64)),
+                    ("score", Json::Float(h.score)),
+                ])
+            })
+            .collect(),
+    );
+
+    let ownership = Json::Array(
+        a.ownership
+            .iter()
+            .map(|o| {
+                Json::obj(vec![
+                    ("path", Json::str(&o.path)),
+                    ("authors", Json::Int(o.authors as i64)),
+                    ("top_share", Json::Float(o.top_share)),
+                    ("concentration", Json::Float(o.concentration)),
