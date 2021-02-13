@@ -158,3 +158,35 @@ pub fn analyze(history: &History, params: &Params) -> Analysis {
         file_stats,
         co_changes,
         hotspots,
+        ownership,
+        clusters,
+        summary,
+    }
+}
+
+fn compute_file_stats(history: &History) -> Vec<FileStat> {
+    struct Acc {
+        commits: u64,
+        added: u64,
+        removed: u64,
+        churn: u64,
+        authors: BTreeSet<String>,
+        first_seen: i64,
+        last_seen: i64,
+    }
+    let mut map: BTreeMap<String, Acc> = BTreeMap::new();
+
+    for c in &history.commits {
+        for f in &c.files {
+            let acc = map.entry(f.path.clone()).or_insert_with(|| Acc {
+                commits: 0,
+                added: 0,
+                removed: 0,
+                churn: 0,
+                authors: BTreeSet::new(),
+                first_seen: c.timestamp,
+                last_seen: c.timestamp,
+            });
+            acc.commits += 1;
+            acc.added += f.added.unwrap_or(0);
+            acc.removed += f.removed.unwrap_or(0);
