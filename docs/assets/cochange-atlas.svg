@@ -28,3 +28,8 @@
 
   <!-- Guide ring. -->
   <circle cx="320" cy="290" r="170" fill="none" stroke="#1d3330" stroke-width="1.2" opacity="0.7"/>
+
+  <!-- Chords. Ring layout (8 slots, starting at top, clockwise):
+       0 handlers.rs (320,120)  1 router.rs (440,175)
+       2 storage.rs (490,290)   3 config.rs (440,405)
+       4 main.rs (320,460)      5 lib.rs (200,405)
