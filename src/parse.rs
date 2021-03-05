@@ -38,3 +38,9 @@ fn parse_record(record: &str) -> Option<Commit> {
     let header = lines.next()?;
 
     let mut fields = header.split(FIELD_SEP);
+    let hash = fields.next()?.trim().to_string();
+    let author_name = fields.next().unwrap_or("").trim().to_string();
+    let author_email = fields.next().unwrap_or("").trim().to_string();
+    let timestamp = fields
+        .next()
+        .and_then(|s| s.trim().parse::<i64>().ok())
