@@ -71,3 +71,15 @@ impl Json {
                     if i > 0 {
                         out.push(',');
                     }
+                    write_json_string(out, k);
+                    out.push(':');
+                    v.write_compact(out);
+                }
+                out.push('}');
+            }
+        }
+    }
+
+    fn write_pretty(&self, out: &mut String, indent: usize) {
+        match self {
+            Json::Array(items) if !items.is_empty() => {
