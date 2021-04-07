@@ -92,3 +92,26 @@ risk accumulate over time?"* The atlas asks *"what is secretly wired to what?"*
 ---
 
 ## Install and build
+
+You need a recent Rust toolchain (1.70+; developed on 1.98) and a local `git`.
+
+```sh
+# Build the release binary.
+cargo build --release
+# Binary lands at target/release/repohelix (.exe on Windows).
+
+# Or run straight from source during development.
+cargo run -- help
+```
+
+There is nothing else to install. The manifest has an intentionally empty
+`[dependencies]` table — `repohelix` is a pure standard-library program.
+
+---
+
+## Quick start (30 seconds)
+
+The repository ships with a synthetic fixture, `fixtures/nebula.gitlog`, modeling
+a small fictional web service. It exists so every demo and test is reproducible
+without a live repository.
+
