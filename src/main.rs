@@ -20,3 +20,8 @@ fn main() -> ExitCode {
 }
 
 fn run(args: &[String]) -> Result<(), String> {
+    let command = cli::parse(args)?;
+    match command {
+        Command::Help => {
+            print!("{}", cli::help_text());
+            Ok(())
