@@ -6,3 +6,5 @@ $ErrorActionPreference = 'Stop'
 $root = Join-Path $PSScriptRoot '..'
 Push-Location $root
 try {
+    cargo build --quiet
+    $bin = Join-Path $root 'target/debug/repohelix.exe'
