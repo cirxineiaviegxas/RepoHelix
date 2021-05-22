@@ -31,3 +31,14 @@ export interface ViewerCluster {
   start: number;
   end: number;
   commits: number;
+  churn: number;
+}
+
+/** The full payload. */
+export interface ViewerData {
+  schema: string;
+  commits: number;
+  span_days: number;
+  nodes: ViewerNode[];
+  links: ViewerLink[];
+  clusters: ViewerCluster[];
