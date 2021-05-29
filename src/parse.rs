@@ -44,3 +44,10 @@ fn parse_record(record: &str) -> Option<Commit> {
     let timestamp = fields
         .next()
         .and_then(|s| s.trim().parse::<i64>().ok())
+        .unwrap_or(0);
+    // Subject may itself contain the field separator only if authored oddly;
+    // rejoin the remainder to be safe.
+    let subject_parts: Vec<&str> = fields.collect();
+    let subject = subject_parts.join(&FIELD_SEP.to_string());
+
+    if hash.is_empty() {
