@@ -31,3 +31,8 @@ export function churnRadius(churn, maxChurn) {
     if (maxChurn <= 0)
         return 3;
     const t = Math.sqrt(churn / maxChurn);
+    return lerp(3, 18, t);
+}
+/** Basename of a path. */
+export function basename(path) {
+    const i = path.lastIndexOf("/");
