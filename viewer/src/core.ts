@@ -42,3 +42,14 @@ export interface ViewerData {
   nodes: ViewerNode[];
   links: ViewerLink[];
   clusters: ViewerCluster[];
+}
+
+/** Linear interpolation. */
+export function lerp(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
+}
+
+/** Clamp a value into [lo, hi]. */
+export function clamp(x: number, lo: number, hi: number): number {
+  return Math.max(lo, Math.min(hi, x));
+}
