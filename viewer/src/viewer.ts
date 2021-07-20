@@ -69,3 +69,39 @@ export function renderHelix(
     const xA = cx + Math.sin(angle) * amp;
     const xB = cx + Math.sin(angle + Math.PI) * amp;
     dA += `${s === 0 ? "M" : "L"}${xA.toFixed(2)},${y.toFixed(2)} `;
+    dB += `${s === 0 ? "M" : "L"}${xB.toFixed(2)},${y.toFixed(2)} `;
+  }
+  strandA.setAttribute("d", dA);
+  strandB.setAttribute("d", dB);
+  svg.appendChild(strandA);
+  svg.appendChild(strandB);
+
+  order.forEach((nodeIndex, rank) => {
+    const node = nodes[nodeIndex];
+    const t = order.length > 1 ? rank / (order.length - 1) : 0;
+    const y = topPad + t * usableH;
+    const angle = t * turns * Math.PI * 2 + (rank % 2 === 0 ? 0 : Math.PI);
+    const x = cx + Math.sin(angle) * amp;
+
+    const r = churnRadius(node.churn, maxC);
+    const g = el("g", { class: "helix-node", "data-index": nodeIndex });
+
+    const dot = el("circle", {
+      cx: x,
+      cy: y,
+      r,
+      fill: concentrationColour(node.concentration),
+      stroke: "#0d1b1a",
+      "stroke-width": 1,
+    });
+    const dur = (2.4 - 1.6 * (node.churn / (maxC || 1))).toFixed(2);
+    dot.appendChild(
+      el("animate", {
+        attributeName: "r",
+        values: `${r};${(r * 1.18).toFixed(2)};${r}`,
+        dur: `${dur}s`,
+        repeatCount: "indefinite",
+      }),
+    );
+    g.appendChild(dot);
+
