@@ -25,3 +25,8 @@ fn run(args: &[String]) -> Result<(), String> {
         Command::Help => {
             print!("{}", cli::help_text());
             Ok(())
+        }
+        Command::Version => {
+            println!("repohelix {}", env!("CARGO_PKG_VERSION"));
+            Ok(())
+        }
