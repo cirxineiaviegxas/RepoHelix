@@ -190,3 +190,36 @@ fn compute_file_stats(history: &History) -> Vec<FileStat> {
             acc.commits += 1;
             acc.added += f.added.unwrap_or(0);
             acc.removed += f.removed.unwrap_or(0);
+            acc.churn += f.churn();
+            acc.authors.insert(c.identity().to_string());
+            acc.first_seen = acc.first_seen.min(c.timestamp);
+            acc.last_seen = acc.last_seen.max(c.timestamp);
+        }
+    }
+
+    let mut stats: Vec<FileStat> = map
+        .into_iter()
+        .map(|(path, a)| FileStat {
+            path,
+            commits: a.commits,
+            added: a.added,
+            removed: a.removed,
+            churn: a.churn,
+            authors: a.authors.len() as u64,
+            first_seen: a.first_seen,
+            last_seen: a.last_seen,
+        })
+        .collect();
+
+    // Sort by churn desc, then commits desc, then path for determinism.
+    stats.sort_by(|x, y| {
+        y.churn
+            .cmp(&x.churn)
+            .then(y.commits.cmp(&x.commits))
+            .then(x.path.cmp(&y.path))
+    });
+    stats
+}
+
+fn compute_cochange(history: &History, params: &Params) -> Vec<CoChange> {
+    // Count individual file appearances and unordered-pair co-appearances.
