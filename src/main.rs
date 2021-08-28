@@ -30,3 +30,7 @@ fn run(args: &[String]) -> Result<(), String> {
             println!("repohelix {}", env!("CARGO_PKG_VERSION"));
             Ok(())
         }
+        Command::Analyze(opts) => {
+            let history =
+                load_history(&opts.source, opts.max_commits).map_err(|e| e.to_string())?;
+            let analysis = analyze(&history, &opts.params);
