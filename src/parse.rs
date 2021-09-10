@@ -51,3 +51,10 @@ fn parse_record(record: &str) -> Option<Commit> {
     let subject = subject_parts.join(&FIELD_SEP.to_string());
 
     if hash.is_empty() {
+        return None;
+    }
+
+    let mut files = Vec::new();
+    for line in lines {
+        let line = line.trim_end_matches('\r');
+        if line.trim().is_empty() {
