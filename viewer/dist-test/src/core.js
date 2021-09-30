@@ -36,3 +36,8 @@ export function churnRadius(churn, maxChurn) {
 /** Basename of a path. */
 export function basename(path) {
     const i = path.lastIndexOf("/");
+    return i >= 0 ? path.slice(i + 1) : path;
+}
+/** Maximum churn across nodes (0 if empty). */
+export function maxChurn(nodes) {
+    return nodes.reduce((m, n) => Math.max(m, n.churn), 0);
