@@ -2,3 +2,4 @@
 /target/
 **/*.rs.bk
 
+# Node / TypeScript viewer build artifacts
