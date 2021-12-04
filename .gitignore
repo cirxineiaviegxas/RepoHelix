@@ -3,3 +3,5 @@
 **/*.rs.bk
 
 # Node / TypeScript viewer build artifacts
+viewer/node_modules/
+viewer/dist/
