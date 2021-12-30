@@ -151,3 +151,20 @@ pub fn to_text(analysis: &Analysis) -> String {
             "  {:<40} {:>7} {:>7} {:>7.3}",
             truncate(&h.path, 40),
             h.churn,
+            h.commits,
+            h.score
+        );
+    }
+    let _ = writeln!(out);
+
+    let _ = writeln!(out, "Strongest temporal coupling (co-change)");
+    let _ = writeln!(
+        out,
+        "  {:>5} {:>5} {:<26} {:<26}",
+        "str", "conf", "file A", "file B"
+    );
+    for c in analysis.co_changes.iter().take(15) {
+        let _ = writeln!(
+            out,
+            "  {:>5.2} {:>5.2} {:<26} {:<26}",
+            c.strength,
