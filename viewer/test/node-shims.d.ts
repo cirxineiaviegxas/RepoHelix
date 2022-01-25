@@ -3,3 +3,5 @@
  *
  * repohelix's viewer intentionally ships with zero runtime and (near) zero dev
  * dependencies. Rather than pulling the full `@types/node` package just to run
+ * a handful of assertions, we declare exactly what the test file touches.
+ */
