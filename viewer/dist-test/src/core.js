@@ -41,3 +41,8 @@ export function basename(path) {
 /** Maximum churn across nodes (0 if empty). */
 export function maxChurn(nodes) {
     return nodes.reduce((m, n) => Math.max(m, n.churn), 0);
+}
+/** Stable helix ordering: by first appearance, then path. */
+export function helixOrder(nodes) {
+    return nodes
+        .map((n, i) => ({ n, i }))
