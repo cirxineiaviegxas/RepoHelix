@@ -40,3 +40,11 @@ fn handlers_router_are_most_coupled() {
         let mut v = [top.a.as_str(), top.b.as_str()];
         v.sort_unstable();
         v
+    };
+    assert_eq!(pair, ["src/handlers.rs", "src/router.rs"]);
+    assert!(top.strength > 0.5);
+}
+
+#[test]
+fn four_temporal_clusters() {
+    let history = load_from_log(fixture_path(), None).unwrap();
