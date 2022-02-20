@@ -5,3 +5,4 @@
 # Node / TypeScript viewer build artifacts
 viewer/node_modules/
 viewer/dist/
+viewer/dist-test/
