@@ -6,3 +6,4 @@
 viewer/node_modules/
 viewer/dist/
 viewer/dist-test/
+viewer/package-lock.json
