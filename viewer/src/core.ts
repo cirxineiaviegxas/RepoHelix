@@ -53,3 +53,15 @@ export function lerp(a: number, b: number, t: number): number {
 export function clamp(x: number, lo: number, hi: number): number {
   return Math.max(lo, Math.min(hi, x));
 }
+
+/**
+ * Map a concentration value (0..1) to an rgb() colour. Low concentration
+ * (shared stewardship) reads as calm teal; high concentration (single-owner /
+ * bus-factor risk) reads as warm amber. This is a risk gradient, never a value
+ * judgment about any contributor.
+ */
+export function concentrationColour(c: number): string {
+  const t = clamp(c, 0, 1);
+  const r = Math.round(lerp(40, 240, t));
+  const g = Math.round(lerp(200, 170, t));
+  const b = Math.round(lerp(180, 60, t));
