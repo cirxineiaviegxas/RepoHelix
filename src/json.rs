@@ -108,3 +108,15 @@ impl Json {
                     out.push('\n');
                 }
                 push_indent(out, indent);
+                out.push('}');
+            }
+            // Empty containers and scalars fall back to the compact form.
+            _ => self.write_compact(out),
+        }
+    }
+}
+
+fn push_indent(out: &mut String, level: usize) {
+    for _ in 0..level {
+        out.push_str("  ");
+    }
