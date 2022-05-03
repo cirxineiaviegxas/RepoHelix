@@ -47,3 +47,16 @@ commits(f) = number of commits touching f
 ```
 
 Churn is the crudest possible activity signal: how much text moved through a
+file. High churn is neither good nor bad. A parser generator, a lockfile, or a
+central dispatch module can all be legitimately high-churn.
+
+## Hotspots
+
+A **hotspot** is a file that is high on *both* churn and change frequency —
+the intersection where maintenance effort and change risk tend to concentrate.
+
+Let `maxChurn` and `maxCommits` be the maxima across all files. For file `f`:
+
+```
+nc(f) = churn(f)   / maxChurn      (0 if maxChurn == 0)
+nf(f) = commits(f) / maxCommits    (0 if maxCommits == 0)
