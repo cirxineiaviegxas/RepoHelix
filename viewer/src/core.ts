@@ -65,3 +65,14 @@ export function concentrationColour(c: number): string {
   const r = Math.round(lerp(40, 240, t));
   const g = Math.round(lerp(200, 170, t));
   const b = Math.round(lerp(180, 60, t));
+  return `rgb(${r},${g},${b})`;
+}
+
+/** Scale churn to a node radius with a gentle square-root curve. */
+export function churnRadius(churn: number, maxChurn: number): number {
+  if (maxChurn <= 0) return 3;
+  const t = Math.sqrt(churn / maxChurn);
+  return lerp(3, 18, t);
+}
+
+/** Basename of a path. */
