@@ -46,3 +46,7 @@ export function maxChurn(nodes) {
 export function helixOrder(nodes) {
     return nodes
         .map((n, i) => ({ n, i }))
+        .sort((a, b) => a.n.first_seen - b.n.first_seen || a.n.path.localeCompare(b.n.path))
+        .map((e) => e.i);
+}
+/** Position on a ring of `n` slots at slot `i`, centred at (cx, cy). */
