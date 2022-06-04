@@ -120,3 +120,15 @@ fn push_indent(out: &mut String, level: usize) {
     for _ in 0..level {
         out.push_str("  ");
     }
+}
+
+/// Format a float without a trailing `.0`-only ambiguity while staying valid
+/// JSON. Non-finite values are emitted as `null` (JSON has no NaN/Infinity).
+fn format_float(f: f64) -> String {
+    if !f.is_finite() {
+        return "null".to_string();
+    }
+    // Round to 6 decimal places for stable, readable metric output.
+    let rounded = (f * 1_000_000.0).round() / 1_000_000.0;
+    if rounded == rounded.trunc() && rounded.abs() < 1e15 {
+        format!("{:.1}", rounded)
