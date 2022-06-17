@@ -37,3 +37,13 @@ impl std::fmt::Display for GitError {
                     .unwrap_or_else(|| "signal".into());
                 write!(f, "git exited with status {code}: {}", stderr.trim())
             }
+            GitError::Encoding => write!(f, "git produced non-UTF-8 output"),
+        }
+    }
+}
+
+impl std::error::Error for GitError {}
+
+/// The custom pretty format we request from `git log`. Fields, in order:
+/// hash, author name, author email, author unix time, subject.
+fn pretty_format() -> String {
