@@ -34,3 +34,8 @@ $commits = @(
     @{ h='a1000004'; a='bo';  t=1704072600; s='Wire router to handlers';
        f=@('45 5 src/router.rs','70 0 src/handlers.rs','6 1 src/main.rs') },
 
+    # ---- Session 2: data layer (day 3) ----
+    @{ h='b2000001'; a='cy';  t=1704326400; s='Add storage module';
+       f=@('120 0 src/storage.rs','9 0 src/lib.rs','7 2 Cargo.toml') },
+    @{ h='b2000002'; a='cy';  t=1704328200; s='Storage: connection pooling';
+       f=@('55 8 src/storage.rs','20 0 src/config.rs') },
