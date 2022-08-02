@@ -6,3 +6,4 @@
  * a handful of assertions, we declare exactly what the test file touches.
  */
 
+declare module "node:assert/strict" {
