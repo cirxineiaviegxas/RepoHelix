@@ -168,3 +168,20 @@ pub fn to_text(analysis: &Analysis) -> String {
             out,
             "  {:>5.2} {:>5.2} {:<26} {:<26}",
             c.strength,
+            c.confidence,
+            truncate(&c.a, 26),
+            truncate(&c.b, 26)
+        );
+    }
+    let _ = writeln!(out);
+
+    let _ = writeln!(out, "Ownership concentration (bus-factor risk)");
+    let _ = writeln!(
+        out,
+        "  {:<40} {:>7} {:>7} {:>10}",
+        "path", "authors", "top%", "concentr."
+    );
+    for o in analysis.ownership.iter().take(15) {
+        let _ = writeln!(
+            out,
+            "  {:<40} {:>7} {:>6.0}% {:>10.3}",
