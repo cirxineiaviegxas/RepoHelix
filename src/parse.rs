@@ -58,3 +58,9 @@ fn parse_record(record: &str) -> Option<Commit> {
     for line in lines {
         let line = line.trim_end_matches('\r');
         if line.trim().is_empty() {
+            continue;
+        }
+        if let Some(fc) = parse_numstat_line(line) {
+            files.push(fc);
+        }
+    }
