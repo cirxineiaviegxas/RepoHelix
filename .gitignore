@@ -9,3 +9,4 @@ viewer/dist-test/
 viewer/package-lock.json
 
 # Editor / OS
+.DS_Store
