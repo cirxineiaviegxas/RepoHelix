@@ -10,3 +10,5 @@ try {
     $bin = Join-Path $root 'target/debug/repohelix.exe'
     if (-not (Test-Path $bin)) { $bin = Join-Path $root 'target/debug/repohelix' }
     $json = & $bin viewer-data --log 'fixtures/nebula.gitlog'
+    $out = Join-Path $root 'viewer/data.js'
+    $content = 'window.REPOHELIX_DATA = ' + $json + ';' + "`n"
