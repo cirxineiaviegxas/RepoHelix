@@ -8,3 +8,5 @@ authors = ["repohelix contributors"]
 repository = "https://example.invalid/repohelix"
 readme = "README.md"
 keywords = ["git", "history", "temporal-coupling", "churn", "analysis"]
+categories = ["command-line-utilities", "development-tools"]
+
