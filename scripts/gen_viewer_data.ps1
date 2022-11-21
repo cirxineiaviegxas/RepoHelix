@@ -12,3 +12,4 @@ try {
     $json = & $bin viewer-data --log 'fixtures/nebula.gitlog'
     $out = Join-Path $root 'viewer/data.js'
     $content = 'window.REPOHELIX_DATA = ' + $json + ';' + "`n"
+    $utf8 = New-Object System.Text.UTF8Encoding($false)
