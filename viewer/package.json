@@ -2,3 +2,5 @@
   "name": "repohelix-viewer",
   "version": "0.1.0",
   "private": true,
+  "description": "Dependency-free interactive helix / co-change atlas viewer for repohelix",
+  "license": "MIT",
