@@ -255,3 +255,35 @@ fn compute_cochange(history: &History, params: &Params) -> Vec<CoChange> {
     }
 
     let mut pairs: Vec<CoChange> = pair_count
+        .into_iter()
+        .filter(|(_, together)| *together >= params.min_cochange)
+        .map(|((a, b), together)| {
+            let ca = *file_count.get(a).unwrap_or(&together);
+            let cb = *file_count.get(b).unwrap_or(&together);
+            let union = (ca + cb).saturating_sub(together);
+            let strength = if union == 0 {
+                0.0
+            } else {
+                together as f64 / union as f64
+            };
+            // Use the more frequently changed file as antecedent.
+            let antecedent = ca.max(cb);
+            let confidence = if antecedent == 0 {
+                0.0
+            } else {
+                together as f64 / antecedent as f64
+            };
+            CoChange {
+                a: a.to_string(),
+                b: b.to_string(),
+                together,
+                count_a: ca,
+                count_b: cb,
+                strength,
+                confidence,
+            }
+        })
+        .collect();
+
+    pairs.sort_by(|x, y| {
+        y.strength
