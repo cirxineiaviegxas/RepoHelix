@@ -44,3 +44,26 @@ pub fn build(analysis: &Analysis, max_nodes: usize) -> Json {
                     ("commits", Json::Int(f.commits as i64)),
                     ("authors", Json::Int(f.authors as i64)),
                     ("concentration", Json::Float(own)),
+                    ("first_seen", Json::Int(f.first_seen)),
+                    ("last_seen", Json::Int(f.last_seen)),
+                ])
+            })
+            .collect(),
+    );
+
+    // Only keep links where both endpoints are among the selected nodes.
+    let links = Json::Array(
+        analysis
+            .co_changes
+            .iter()
+            .filter_map(|c| {
+                let a = *index_of.get(c.a.as_str())?;
+                let b = *index_of.get(c.b.as_str())?;
+                Some(Json::obj(vec![
+                    ("source", Json::Int(a as i64)),
+                    ("target", Json::Int(b as i64)),
+                    ("strength", Json::Float(c.strength)),
+                    ("together", Json::Int(c.together as i64)),
+                ]))
+            })
+            .collect(),
