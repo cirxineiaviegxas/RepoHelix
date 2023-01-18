@@ -287,3 +287,35 @@ fn compute_cochange(history: &History, params: &Params) -> Vec<CoChange> {
 
     pairs.sort_by(|x, y| {
         y.strength
+            .partial_cmp(&x.strength)
+            .unwrap_or(std::cmp::Ordering::Equal)
+            .then(y.together.cmp(&x.together))
+            .then(x.a.cmp(&y.a))
+            .then(x.b.cmp(&y.b))
+    });
+    pairs.truncate(params.top_cochange);
+    pairs
+}
+
+fn compute_hotspots(file_stats: &[FileStat], params: &Params) -> Vec<Hotspot> {
+    let max_churn = file_stats.iter().map(|f| f.churn).max().unwrap_or(0) as f64;
+    let max_commits = file_stats.iter().map(|f| f.commits).max().unwrap_or(0) as f64;
+
+    let mut spots: Vec<Hotspot> = file_stats
+        .iter()
+        .map(|f| {
+            let nc = if max_churn > 0.0 {
+                f.churn as f64 / max_churn
+            } else {
+                0.0
+            };
+            let nf = if max_commits > 0.0 {
+                f.commits as f64 / max_commits
+            } else {
+                0.0
+            };
+            // Geometric mean rewards files that are high on *both* axes.
+            let score = (nc * nf).sqrt();
+            Hotspot {
+                path: f.path.clone(),
+                churn: f.churn,
