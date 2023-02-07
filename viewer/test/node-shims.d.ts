@@ -8,3 +8,4 @@
 
 declare module "node:assert/strict" {
   interface StrictAssert {
+    (value: unknown, message?: string): void;
