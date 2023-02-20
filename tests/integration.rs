@@ -48,3 +48,12 @@ fn handlers_router_are_most_coupled() {
 #[test]
 fn four_temporal_clusters() {
     let history = load_from_log(fixture_path(), None).unwrap();
+    let analysis = analyze(&history, &Params::default());
+    // The fixture is built as four sessions separated by multi-day gaps.
+    assert_eq!(analysis.clusters.len(), 4);
+    let total: u64 = analysis.clusters.iter().map(|c| c.commits).sum();
+    assert_eq!(total, 24);
+}
+
+#[test]
+fn single_author_files_have_max_concentration() {
