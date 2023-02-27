@@ -41,3 +41,9 @@ pub struct Commit {
     /// Author email (used as the stable identity key for ownership).
     pub author_email: String,
     /// Author timestamp as Unix epoch seconds.
+    pub timestamp: i64,
+    /// First line of the commit message (the subject).
+    pub subject: String,
+    /// Files changed by this commit.
+    pub files: Vec<FileChange>,
+}
