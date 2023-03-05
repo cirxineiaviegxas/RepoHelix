@@ -53,3 +53,12 @@ test("clamp bounds values", () => {
 
 test("concentrationColour endpoints differ", () => {
   const low = concentrationColour(0);
+  const high = concentrationColour(1);
+  assert.notEqual(low, high);
+  assert.match(low, /^rgb\(\d+,\d+,\d+\)$/);
+});
+
+test("churnRadius grows with churn and handles zero max", () => {
+  assert.equal(churnRadius(10, 0), 3);
+  const small = churnRadius(10, 100);
+  const big = churnRadius(100, 100);
