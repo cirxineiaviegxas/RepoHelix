@@ -9,3 +9,5 @@
 declare module "node:assert/strict" {
   interface StrictAssert {
     (value: unknown, message?: string): void;
+    equal(actual: unknown, expected: unknown, message?: string): void;
+    notEqual(actual: unknown, expected: unknown, message?: string): void;
