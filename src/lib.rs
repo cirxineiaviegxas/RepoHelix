@@ -27,3 +27,18 @@
 //!
 //! All outputs are sorted by stable keys, so the same input always yields the
 //! same bytes. This makes fixture-log demos reproducible and testable.
+
+pub mod cli;
+pub mod git;
+pub mod json;
+pub mod metrics;
+pub mod model;
+pub mod parse;
+pub mod report;
+pub mod viewer;
+
+use std::fs;
+use std::path::Path;
+
+/// High-level error type for the pipeline.
+#[derive(Debug)]
