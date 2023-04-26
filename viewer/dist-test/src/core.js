@@ -50,3 +50,8 @@ export function helixOrder(nodes) {
         .map((e) => e.i);
 }
 /** Position on a ring of `n` slots at slot `i`, centred at (cx, cy). */
+export function ringPoint(i, n, cx, cy, radius) {
+    const angle = (i / n) * Math.PI * 2 - Math.PI / 2;
+    return { x: cx + Math.cos(angle) * radius, y: cy + Math.sin(angle) * radius, angle };
+}
+/** Validate that every link references an in-range node index. */
