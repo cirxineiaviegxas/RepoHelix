@@ -15,3 +15,5 @@ try {
     $utf8 = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($out, $content, $utf8)
     Write-Host "Wrote $out"
+}
+finally {
