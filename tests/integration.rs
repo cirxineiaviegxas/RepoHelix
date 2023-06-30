@@ -57,3 +57,11 @@ fn four_temporal_clusters() {
 
 #[test]
 fn single_author_files_have_max_concentration() {
+    let history = load_from_log(fixture_path(), None).unwrap();
+    let analysis = analyze(&history, &Params::default());
+    let migrate = analysis
+        .ownership
+        .iter()
+        .find(|o| o.path == "src/migrate.rs")
+        .unwrap();
+    assert_eq!(migrate.authors, 1);
