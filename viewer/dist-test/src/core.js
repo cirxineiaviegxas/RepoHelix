@@ -55,3 +55,8 @@ export function ringPoint(i, n, cx, cy, radius) {
     return { x: cx + Math.cos(angle) * radius, y: cy + Math.sin(angle) * radius, angle };
 }
 /** Validate that every link references an in-range node index. */
+export function linksAreValid(data) {
+    const n = data.nodes.length;
+    return data.links.every((l) => l.source >= 0 && l.source < n && l.target >= 0 && l.target < n && l.source !== l.target);
+}
+/** Build the one-line summary string. */
