@@ -76,3 +76,14 @@ export function churnRadius(churn: number, maxChurn: number): number {
 }
 
 /** Basename of a path. */
+export function basename(path: string): string {
+  const i = path.lastIndexOf("/");
+  return i >= 0 ? path.slice(i + 1) : path;
+}
+
+/** Maximum churn across nodes (0 if empty). */
+export function maxChurn(nodes: ViewerNode[]): number {
+  return nodes.reduce((m, n) => Math.max(m, n.churn), 0);
+}
+
+/** Stable helix ordering: by first appearance, then path. */
