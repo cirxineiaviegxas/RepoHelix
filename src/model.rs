@@ -47,3 +47,9 @@ pub struct Commit {
     /// Files changed by this commit.
     pub files: Vec<FileChange>,
 }
+
+impl Commit {
+    /// The identity used for ownership aggregation. Email is preferred because
+    /// it is more stable than display names, which vary across machines.
+    pub fn identity(&self) -> &str {
+        if self.author_email.is_empty() {
