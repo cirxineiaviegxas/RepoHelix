@@ -67,3 +67,26 @@ pub fn build(analysis: &Analysis, max_nodes: usize) -> Json {
                 ]))
             })
             .collect(),
+    );
+
+    let clusters = Json::Array(
+        analysis
+            .clusters
+            .iter()
+            .map(|c| {
+                Json::obj(vec![
+                    ("index", Json::Int(c.index as i64)),
+                    ("start", Json::Int(c.start)),
+                    ("end", Json::Int(c.end)),
+                    ("commits", Json::Int(c.commits as i64)),
+                    ("churn", Json::Int(c.churn as i64)),
+                ])
+            })
+            .collect(),
+    );
+
+    Json::obj(vec![
+        ("schema", Json::str("repohelix/viewer/v1")),
+        ("commits", Json::Int(analysis.summary.commits as i64)),
+        ("span_days", Json::Int(analysis.summary.span_days)),
+        ("nodes", nodes),
