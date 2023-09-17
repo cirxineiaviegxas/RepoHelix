@@ -5,3 +5,4 @@
   "description": "Dependency-free interactive helix / co-change atlas viewer for repohelix",
   "license": "MIT",
   "type": "module",
+  "scripts": {
