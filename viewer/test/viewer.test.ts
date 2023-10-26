@@ -62,3 +62,12 @@ test("churnRadius grows with churn and handles zero max", () => {
   assert.equal(churnRadius(10, 0), 3);
   const small = churnRadius(10, 100);
   const big = churnRadius(100, 100);
+  assert.ok(big > small);
+  assert.ok(big <= 18.0001);
+});
+
+test("basename strips directories", () => {
+  assert.equal(basename("src/models/user.rs"), "user.rs");
+  assert.equal(basename("README.md"), "README.md");
+});
+
