@@ -64,3 +64,10 @@ fn parse_record(record: &str) -> Option<Commit> {
             files.push(fc);
         }
     }
+
+    Some(Commit {
+        hash,
+        author_name,
+        author_email,
+        timestamp,
+        subject: subject.trim().to_string(),
