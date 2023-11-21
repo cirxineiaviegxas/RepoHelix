@@ -19,3 +19,13 @@ help: ## Show this help
 	@echo "  clippy        Lint with clippy (if installed)"
 	@echo "  demo          Print the text report for the bundled fixture"
 	@echo "  demo-json     Print the JSON report for the bundled fixture"
+	@echo "  viewer-build  Build the TypeScript viewer"
+	@echo "  viewer-test   Run the TypeScript core tests"
+	@echo "  viewer-data   Regenerate viewer/data.js from the fixture"
+	@echo "  check         fmt-check + test (+ viewer-test if Node present)"
+	@echo "  clean         Remove build artifacts"
+
+.PHONY: build
+build: ## Build the release binary
+	$(CARGO) build --release
+
