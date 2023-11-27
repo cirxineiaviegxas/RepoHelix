@@ -4,3 +4,5 @@
     "module": "ES2020",
     "moduleResolution": "node",
     "lib": ["ES2020"],
+    "outDir": "dist-test",
+    "rootDir": ".",
