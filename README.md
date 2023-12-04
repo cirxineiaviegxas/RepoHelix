@@ -257,3 +257,26 @@ always valid JSON.
 A minimal graph: `nodes` (files with churn/commits/authors/concentration/time),
 `links` (co-change pairs referencing node indices), and `clusters`. Capped at 64
 nodes so the browser render stays smooth and the file stays tiny.
+
+---
+
+## The interactive viewer
+
+The `viewer/` directory holds a dependency-free TypeScript app that renders the
+payload as the same helix + atlas you see at the top of this README — but
+interactive, with hover tooltips.
+
+```sh
+cd viewer
+npm run build       # tsc → dist/viewer.js (+ dist/core.js)
+
+# Regenerate the embedded demo dataset from the fixture (Windows PowerShell):
+pwsh -File ../scripts/gen_viewer_data.ps1   # writes viewer/data.js
+
+# Then open viewer/index.html in any browser. It loads data.js locally.
+```
+
+The viewer is split into two modules:
+
+- **`src/core.ts`** — pure, DOM-free math and data shaping (colour ramps, churn
+  scaling, ring layout, ordering, validation, summary text). This is what the
