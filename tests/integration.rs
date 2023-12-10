@@ -65,3 +65,11 @@ fn single_author_files_have_max_concentration() {
         .find(|o| o.path == "src/migrate.rs")
         .unwrap();
     assert_eq!(migrate.authors, 1);
+    assert!((migrate.concentration - 1.0).abs() < 1e-9);
+}
+
+#[test]
+fn output_is_deterministic() {
+    let history = load_from_log(fixture_path(), None).unwrap();
+    let a1 = analyze(&history, &Params::default());
+    let a2 = analyze(&history, &Params::default());
