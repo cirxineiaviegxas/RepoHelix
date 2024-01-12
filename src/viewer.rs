@@ -90,3 +90,26 @@ pub fn build(analysis: &Analysis, max_nodes: usize) -> Json {
         ("commits", Json::Int(analysis.summary.commits as i64)),
         ("span_days", Json::Int(analysis.summary.span_days)),
         ("nodes", nodes),
+        ("links", links),
+        ("clusters", clusters),
+    ])
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::metrics::{analyze, Params};
+    use crate::model::{Commit, FileChange, History};
+
+    fn hist() -> History {
+        let mk = |h: &str, ts: i64, files: &[(&str, u64)]| Commit {
+            hash: h.into(),
+            author_name: "A".into(),
+            author_email: "a@x".into(),
+            timestamp: ts,
+            subject: "s".into(),
+            files: files
+                .iter()
+                .map(|(p, a)| FileChange {
+                    path: (*p).into(),
+                    added: Some(*a),
