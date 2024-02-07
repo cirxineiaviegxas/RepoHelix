@@ -165,3 +165,23 @@ fn parse_analyze(args: Vec<String>) -> Result<Command, String> {
         source,
         format,
         pretty,
+        max_commits,
+        out,
+        params,
+    }))
+}
+
+fn parse_viewer(args: Vec<String>) -> Result<Command, String> {
+    let mut c = Cursor::new(args);
+    let mut repo = None;
+    let mut log = None;
+    let mut out = None;
+    let mut max_commits = None;
+    let mut params = Params::default();
+
+    while let Some(a) = c.next() {
+        match a.as_str() {
+            "--repo" => repo = Some(PathBuf::from(c.value("--repo")?)),
+            "--log" => log = Some(PathBuf::from(c.value("--log")?)),
+            "--out" => out = Some(PathBuf::from(c.value("--out")?)),
+            "--max-commits" => {
