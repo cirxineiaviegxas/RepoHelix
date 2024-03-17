@@ -113,3 +113,26 @@ mod tests {
                 .map(|(p, a)| FileChange {
                     path: (*p).into(),
                     added: Some(*a),
+                    removed: Some(0),
+                })
+                .collect(),
+        };
+        History::new(vec![
+            mk("c3", 3000, &[("a.rs", 5), ("b.rs", 4)]),
+            mk("c2", 2000, &[("a.rs", 3), ("b.rs", 2)]),
+            mk("c1", 1000, &[("a.rs", 9)]),
+        ])
+    }
+
+    #[test]
+    fn payload_has_nodes_and_links() {
+        let a = analyze(&hist(), &Params::default());
+        let payload = build(&a, 50);
+        let s = payload.to_compact();
+        assert!(s.contains("repohelix/viewer/v1"));
+        assert!(s.contains("\"nodes\""));
+        assert!(s.contains("\"links\""));
+        assert!(s.contains("a.rs"));
+    }
+
+    #[test]
