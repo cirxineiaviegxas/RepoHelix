@@ -73,3 +73,12 @@ fn output_is_deterministic() {
     let history = load_from_log(fixture_path(), None).unwrap();
     let a1 = analyze(&history, &Params::default());
     let a2 = analyze(&history, &Params::default());
+    assert_eq!(report::to_json(&a1, true), report::to_json(&a2, true));
+    assert_eq!(report::to_text(&a1), report::to_text(&a2));
+    assert_eq!(
+        viewer::build(&a1, 64).to_compact(),
+        viewer::build(&a2, 64).to_compact()
+    );
+}
+
+#[test]
