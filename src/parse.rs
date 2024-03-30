@@ -78,3 +78,9 @@ fn parse_record(record: &str) -> Option<Commit> {
 /// Parse a single numstat line: `<added>\t<removed>\t<path>`.
 /// Binary files use `-` for the counts.
 fn parse_numstat_line(line: &str) -> Option<FileChange> {
+    let mut parts = line.splitn(3, '\t');
+    let added_s = parts.next()?.trim();
+    let removed_s = parts.next()?.trim();
+    let path = parts.next()?.trim();
+
+    if path.is_empty() {
