@@ -11,3 +11,4 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "declaration": true,
+    "sourceMap": false,
