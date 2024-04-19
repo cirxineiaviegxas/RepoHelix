@@ -7,3 +7,4 @@
     "outDir": "dist-test",
     "rootDir": ".",
     "strict": true,
+    "noUnusedLocals": true,
