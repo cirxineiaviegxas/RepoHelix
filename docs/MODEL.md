@@ -72,3 +72,16 @@ analysis, adapted to the standard-library-only constraints of this tool.
 ## Co-change / temporal coupling
 
 Two files are **temporally coupled** if they tend to change in the same commit.
+For an unordered pair `{a, b}`:
+
+```
+together(a,b) = number of commits that changed both a and b
+count(a)      = number of commits that changed a
+count(b)      = number of commits that changed b
+
+strength(a,b)   = together / (count(a) + count(b) - together)   (Jaccard index)
+confidence(a,b) = together / max(count(a), count(b))            (association rule)
+```
+
+- **strength** is symmetric and lives in `[0, 1]`. `1.0` means the two files
+  *always* change together and never apart.
