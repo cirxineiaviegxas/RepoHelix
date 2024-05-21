@@ -36,3 +36,7 @@ jobs:
         run: cargo build --release
 
       - name: Test
+        run: cargo test --all
+
+      - name: Smoke-test the fixture demo
+        run: |
