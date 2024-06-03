@@ -40,3 +40,6 @@ jobs:
 
       - name: Smoke-test the fixture demo
         run: |
+          cargo run --release -- analyze --log fixtures/nebula.gitlog --format json --compact > /tmp/report.json
+          test -s /tmp/report.json
+          grep -q 'repohelix/analysis/v1' /tmp/report.json
