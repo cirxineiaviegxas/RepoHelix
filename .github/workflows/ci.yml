@@ -43,3 +43,7 @@ jobs:
           cargo run --release -- analyze --log fixtures/nebula.gitlog --format json --compact > /tmp/report.json
           test -s /tmp/report.json
           grep -q 'repohelix/analysis/v1' /tmp/report.json
+          cargo run --release -- viewer-data --log fixtures/nebula.gitlog --out /tmp/viewer.json
+          grep -q 'repohelix/viewer/v1' /tmp/viewer.json
+
+  viewer:
