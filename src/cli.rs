@@ -185,3 +185,24 @@ fn parse_viewer(args: Vec<String>) -> Result<Command, String> {
             "--log" => log = Some(PathBuf::from(c.value("--log")?)),
             "--out" => out = Some(PathBuf::from(c.value("--out")?)),
             "--max-commits" => {
+                max_commits = Some(parse_usize(&c.value("--max-commits")?, "--max-commits")?)
+            }
+            "--top-cochange" => {
+                params.top_cochange = parse_usize(&c.value("--top-cochange")?, "--top-cochange")?
+            }
+            "--min-cochange" => {
+                params.min_cochange = parse_u64(&c.value("--min-cochange")?, "--min-cochange")?
+            }
+            other => return Err(format!("unknown flag '{other}' for viewer-data")),
+        }
+    }
+
+    let source = parse_source(repo, log)?;
+    Ok(Command::ViewerData(ViewerOpts {
+        source,
+        out,
+        max_commits,
+        params,
+    }))
+}
+
