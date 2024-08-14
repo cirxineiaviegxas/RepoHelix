@@ -66,3 +66,9 @@ impl Commit {
 pub struct History {
     pub commits: Vec<Commit>,
 }
+
+impl History {
+    pub fn new(commits: Vec<Commit>) -> Self {
+        History { commits }
+    }
+
