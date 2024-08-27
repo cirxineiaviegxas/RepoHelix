@@ -13,3 +13,4 @@ viewer/package-lock.json
 Thumbs.db
 *.swp
 .idea/
+.vscode/
