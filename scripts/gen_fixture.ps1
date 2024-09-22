@@ -59,3 +59,8 @@ $commits = @(
        f=@('120 90 src/handlers.rs','40 0 src/handlers_user.rs','25 4 src/router.rs') },
     @{ h='c3000006'; a='ada'; t=1704853800; s='Router: nested groups';
        f=@('70 30 src/router.rs','15 5 src/main.rs') },
+    @{ h='c3000007'; a='cy';  t=1704855600; s='Storage: migrations';
+       f=@('85 0 src/migrate.rs','40 10 src/storage.rs','6 0 Cargo.toml') },
+
+    # ---- Session 4: hardening + docs (day 20) ----
+    @{ h='d4000001'; a='dee'; t=1705795200; s='Add error types';
