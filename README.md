@@ -328,3 +328,26 @@ repohelix/
 │   ├── model.rs                # Commit / FileChange / History types
 │   ├── metrics.rs              # churn, co-change, clusters, hotspots, ownership
 │   ├── report.rs               # JSON + text rendering
+│   ├── json.rs                 # minimal std-only JSON writer
+│   └── viewer.rs               # compact viewer-payload builder
+├── tests/integration.rs        # end-to-end tests against the fixture
+├── fixtures/nebula.gitlog      # synthetic, deterministic history
+├── viewer/                     # dependency-free TypeScript viewer
+│   ├── src/core.ts             # pure logic (tested under Node)
+│   ├── src/viewer.ts           # SVG rendering + auto-mount
+│   ├── test/viewer.test.ts     # zero-framework unit tests
+│   ├── index.html              # standalone, loads local data.js only
+│   ├── tsconfig.json           # browser build
+│   └── tsconfig.test.json      # Node test build
+├── docs/
+│   ├── MODEL.md                # exact formulas + ethics
+│   └── assets/*.svg            # the two animated maps
+├── scripts/                    # fixture + viewer-data generators
+├── Makefile, .github/workflows/ci.yml
+├── LICENSE (MIT), CHANGELOG.md
+```
+
+The dependency graph is a straight pipeline: `git`/file → `parse` → `model` →
+`metrics` → `report`/`viewer`. `json` and `model` sit at the bottom with no
+internal dependencies, which is why they are the most heavily unit-tested.
+
