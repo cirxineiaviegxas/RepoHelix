@@ -91,3 +91,10 @@ fn parse_numstat_line(line: &str) -> Option<FileChange> {
         None
     } else {
         added_s.parse::<u64>().ok()
+    };
+    let removed = if removed_s == "-" {
+        None
+    } else {
+        removed_s.parse::<u64>().ok()
+    };
+
