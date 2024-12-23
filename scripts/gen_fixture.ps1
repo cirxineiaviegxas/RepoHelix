@@ -64,3 +64,9 @@ $commits = @(
 
     # ---- Session 4: hardening + docs (day 20) ----
     @{ h='d4000001'; a='dee'; t=1705795200; s='Add error types';
+       f=@('70 0 src/errors.rs','30 20 src/handlers.rs','15 8 src/storage.rs','12 6 src/router.rs') },
+    @{ h='d4000002'; a='dee'; t=1705797000; s='Propagate errors everywhere';
+       f=@('45 30 src/handlers.rs','20 15 src/storage.rs','18 10 src/auth.rs') },
+    @{ h='d4000003'; a='bo';  t=1705798800; s='Add metrics endpoint';
+       f=@('55 0 src/metrics_ep.rs','20 4 src/router.rs','10 2 src/handlers.rs') },
+    @{ h='d4000004'; a='ada'; t=1705800600; s='Config: env overrides';
