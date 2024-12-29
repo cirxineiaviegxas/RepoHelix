@@ -14,3 +14,5 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Local scratch output
