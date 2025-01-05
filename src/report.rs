@@ -236,3 +236,20 @@ fn truncate(s: &str, max: usize) -> String {
 mod tests {
     use super::*;
     use crate::metrics::{analyze, Params};
+    use crate::model::{Commit, FileChange, History};
+
+    fn hist() -> History {
+        History::new(vec![Commit {
+            hash: "h1".into(),
+            author_name: "Ada".into(),
+            author_email: "ada@x".into(),
+            timestamp: 1000,
+            subject: "s".into(),
+            files: vec![FileChange {
+                path: "a.rs".into(),
+                added: Some(3),
+                removed: Some(1),
+            }],
+        }])
+    }
+
