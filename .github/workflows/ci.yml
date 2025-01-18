@@ -47,3 +47,6 @@ jobs:
           grep -q 'repohelix/viewer/v1' /tmp/viewer.json
 
   viewer:
+    name: TypeScript viewer (typecheck, test)
+    runs-on: ubuntu-latest
+    defaults:
