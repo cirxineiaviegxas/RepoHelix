@@ -86,3 +86,13 @@ pub fn run_log(repo: &Path, max_commits: Option<usize>) -> Result<String, GitErr
     let output = cmd.output().map_err(GitError::Spawn)?;
     if !output.status.success() {
         let stderr = String::from_utf8_lossy(&output.stderr).into_owned();
+        return Err(GitError::Failed {
+            code: output.status.code(),
+            stderr,
+        });
+    }
+    String::from_utf8(output.stdout).map_err(|_| GitError::Encoding)
+}
+
+/// Check that a directory looks like a Git repository by asking git.
+pub fn is_git_repo(repo: &Path) -> bool {
