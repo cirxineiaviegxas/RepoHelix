@@ -12,3 +12,5 @@ categories = ["command-line-utilities", "development-tools"]
 
 [[bin]]
 name = "repohelix"
+path = "src/main.rs"
+
