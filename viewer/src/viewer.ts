@@ -105,3 +105,38 @@ export function renderHelix(
     );
     g.appendChild(dot);
 
+    const label = el("text", {
+      x: x + r + 4,
+      y: y + 3,
+      "font-size": 9,
+      fill: "#cfe8e6",
+      "font-family": "monospace",
+    });
+    label.textContent = basename(node.path);
+    g.appendChild(label);
+
+    const title = el("title");
+    title.textContent =
+      `${node.path}\nchurn ${node.churn} · commits ${node.commits} · ` +
+      `authors ${node.authors} · concentration ${node.concentration.toFixed(2)}`;
+    g.appendChild(title);
+
+    svg.appendChild(g);
+  });
+}
+
+/** Render the radial co-change atlas. */
+export function renderAtlas(
+  svg: SVGElement,
+  data: ViewerData,
+  opts: { width: number; height: number },
+): void {
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  svg.setAttribute("viewBox", `0 0 ${opts.width} ${opts.height}`);
+
+  const nodes = data.nodes;
+  const n = nodes.length;
+  if (n === 0) return;
+
+  const cx = opts.width / 2;
+  const cy = opts.height / 2;
