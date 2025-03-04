@@ -14,3 +14,4 @@ declare module "node:assert/strict" {
     deepEqual(actual: unknown, expected: unknown, message?: string): void;
     match(value: string, regexp: RegExp, message?: string): void;
     ok(value: unknown, message?: string): void;
+  }
