@@ -14,3 +14,5 @@ categories = ["command-line-utilities", "development-tools"]
 name = "repohelix"
 path = "src/main.rs"
 
+[lib]
+name = "repohelix"
