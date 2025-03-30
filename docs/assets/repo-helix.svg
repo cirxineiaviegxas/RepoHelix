@@ -115,3 +115,14 @@
     </circle>
     <text x="138" y="322" fill="#cfe8e6" font-size="10">lib.rs · 93</text>
   </g>
+
+  <!-- Legend -->
+  <g font-size="10" fill="#7fa8a3">
+    <rect x="24" y="418" width="592" height="28" rx="6" fill="#10201e" stroke="#1d3330"/>
+    <circle cx="42" cy="432" r="6" fill="rgb(40,200,180)"/>
+    <text x="54" y="435">shared stewardship</text>
+    <circle cx="196" cy="432" r="6" fill="rgb(240,170,60)"/>
+    <text x="208" y="435">single-owner (bus-factor) risk</text>
+    <text x="420" y="435">radius = churn · these are code metrics, not people metrics</text>
+  </g>
+</svg>
