@@ -70,3 +70,8 @@ $commits = @(
     @{ h='d4000003'; a='bo';  t=1705798800; s='Add metrics endpoint';
        f=@('55 0 src/metrics_ep.rs','20 4 src/router.rs','10 2 src/handlers.rs') },
     @{ h='d4000004'; a='ada'; t=1705800600; s='Config: env overrides';
+       f=@('35 20 src/config.rs','8 3 src/main.rs') },
+    @{ h='d4000005'; a='ada'; t=1705802400; s='Docs: architecture notes';
+       f=@('120 10 README.md','40 0 docs/ARCHITECTURE.md') },
+    @{ h='d4000006'; a='cy';  t=1705804200; s='Add integration tests';
+       f=@('90 0 tests/integration.rs','15 5 src/lib.rs') },
