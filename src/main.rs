@@ -48,3 +48,7 @@ fn run(args: &[String]) -> Result<(), String> {
             let payload = viewer::build(&analysis, 64);
             emit(opts.out.as_deref(), &payload.to_compact()).map_err(|e| e.to_string())
         }
+    }
+}
+
+fn load_history(
