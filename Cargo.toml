@@ -16,3 +16,5 @@ path = "src/main.rs"
 
 [lib]
 name = "repohelix"
+path = "src/lib.rs"
+
