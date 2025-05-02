@@ -71,3 +71,12 @@ test("basename strips directories", () => {
   assert.equal(basename("README.md"), "README.md");
 });
 
+test("maxChurn finds the peak", () => {
+  assert.equal(maxChurn(sample().nodes), 100);
+  assert.equal(maxChurn([]), 0);
+});
+
+test("helixOrder sorts by first_seen then path", () => {
+  const order = helixOrder(sample().nodes);
+  // c.rs first_seen 50, a.rs 100, b.rs 200 -> indices [2, 0, 1]
+  assert.deepEqual(order, [2, 0, 1]);
