@@ -140,3 +140,39 @@ export function renderAtlas(
 
   const cx = opts.width / 2;
   const cy = opts.height / 2;
+  const radius = Math.min(cx, cy) - 60;
+  const maxC = maxChurn(nodes);
+
+  const ring = nodes.map((_, i) => ringPoint(i, n, cx, cy, radius));
+
+  const maxStrength = data.links.reduce((m, l) => Math.max(m, l.strength), 0) || 1;
+  data.links.forEach((link, li) => {
+    const a = ring[link.source];
+    const b = ring[link.target];
+    if (!a || !b) return;
+    const rel = link.strength / maxStrength;
+    const bow = lerp(0.85, 0.2, rel);
+    const mx = lerp((a.x + b.x) / 2, cx, bow);
+    const my = lerp((a.y + b.y) / 2, cy, bow);
+    const path = el("path", {
+      d: `M${a.x.toFixed(2)},${a.y.toFixed(2)} Q${mx.toFixed(2)},${my.toFixed(2)} ${b.x.toFixed(2)},${b.y.toFixed(2)}`,
+      fill: "none",
+      stroke: concentrationColour(0.3 + 0.5 * rel),
+      "stroke-width": (0.6 + 4 * rel).toFixed(2),
+      opacity: 0,
+    });
+    path.appendChild(
+      el("animate", {
+        attributeName: "opacity",
+        values: `0;${(0.25 + 0.6 * rel).toFixed(2)}`,
+        dur: "0.8s",
+        begin: `${(li * 0.06).toFixed(2)}s`,
+        fill: "freeze",
+      }),
+    );
+    const title = el("title");
+    title.textContent =
+      `${nodes[link.source].path} ↔ ${nodes[link.target].path}\n` +
+      `strength ${link.strength.toFixed(2)} · together ${link.together}`;
+    path.appendChild(title);
+    svg.appendChild(path);
