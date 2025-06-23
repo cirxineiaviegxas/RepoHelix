@@ -17,3 +17,5 @@ try {
     Write-Host "Wrote $out"
 }
 finally {
+    Pop-Location
+}
