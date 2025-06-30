@@ -65,3 +65,8 @@ export function summaryText(data) {
     const topLink = [...data.links].sort((a, b) => b.strength - a.strength)[0];
     const parts = [
         `commits: ${data.commits}`,
+        `files: ${data.nodes.length}`,
+        `span: ${data.span_days}d`,
+        `sessions: ${data.clusters.length}`,
+        topNode ? `hotspot: ${basename(topNode.path)}` : "",
+        topLink
