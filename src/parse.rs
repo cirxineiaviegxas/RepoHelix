@@ -98,3 +98,9 @@ fn parse_numstat_line(line: &str) -> Option<FileChange> {
         removed_s.parse::<u64>().ok()
     };
 
+    Some(FileChange {
+        path: path.to_string(),
+        added,
+        removed,
+    })
+}
