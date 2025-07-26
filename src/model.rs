@@ -72,3 +72,9 @@ impl History {
         History { commits }
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.commits.is_empty()
+    }
+
+    pub fn commit_count(&self) -> usize {
+        self.commits.len()
