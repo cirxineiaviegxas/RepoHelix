@@ -104,3 +104,10 @@ fn parse_numstat_line(line: &str) -> Option<FileChange> {
         removed,
     })
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn sample_log() -> String {
+        // Two commits: newest first, as git emits.
