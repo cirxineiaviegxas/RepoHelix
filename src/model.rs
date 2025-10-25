@@ -78,3 +78,9 @@ impl History {
 
     pub fn commit_count(&self) -> usize {
         self.commits.len()
+    }
+
+    /// The set of distinct file paths that appear anywhere in history.
+    pub fn distinct_files(&self) -> usize {
+        let mut seen = std::collections::BTreeSet::new();
+        for c in &self.commits {
