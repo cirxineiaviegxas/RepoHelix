@@ -110,3 +110,13 @@
     <footer>
       These metrics describe <b>code and change activity</b>, not people. Ownership
       concentration is a knowledge-distribution (bus-factor) signal, not a measure of
+      anyone's contribution or performance. Generate data with
+      <code>repohelix viewer-data --log fixtures/nebula.gitlog --out viewer/data.js</code>
+      (wrap the JSON as <code>window.REPOHELIX_DATA = {…}</code>) then open this file.
+    </footer>
+
+    <!-- Local, generated dataset. No remote resources are loaded. -->
+    <script src="data.js"></script>
+    <script type="module" src="dist/viewer.js"></script>
+  </body>
+</html>
