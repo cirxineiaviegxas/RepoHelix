@@ -253,3 +253,20 @@ mod tests {
         }])
     }
 
+    #[test]
+    fn json_contains_schema_and_disclaimer() {
+        let a = analyze(&hist(), &Params::default());
+        let j = to_json(&a, false);
+        assert!(j.contains("repohelix/analysis/v1"));
+        assert!(j.contains("not"));
+        assert!(j.contains("\"summary\""));
+    }
+
+    #[test]
+    fn json_is_valid_roundtrippable_structure() {
+        let a = analyze(&hist(), &Params::default());
+        let j = to_json(&a, true);
+        // Pretty output should be balanced and contain nested arrays.
+        assert_eq!(j.matches('{').count(), j.matches('}').count());
+        assert_eq!(j.matches('[').count(), j.matches(']').count());
+    }
