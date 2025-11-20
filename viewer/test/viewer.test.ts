@@ -80,3 +80,12 @@ test("helixOrder sorts by first_seen then path", () => {
   const order = helixOrder(sample().nodes);
   // c.rs first_seen 50, a.rs 100, b.rs 200 -> indices [2, 0, 1]
   assert.deepEqual(order, [2, 0, 1]);
+});
+
+test("ringPoint places first slot at top", () => {
+  const p = ringPoint(0, 4, 100, 100, 50);
+  // angle -PI/2 -> straight up: x=100, y=50.
+  assert.ok(Math.abs(p.x - 100) < 1e-9);
+  assert.ok(Math.abs(p.y - 50) < 1e-9);
+});
+
