@@ -270,3 +270,20 @@ mod tests {
         assert_eq!(j.matches('{').count(), j.matches('}').count());
         assert_eq!(j.matches('[').count(), j.matches(']').count());
     }
+
+    #[test]
+    fn text_report_has_sections() {
+        let a = analyze(&hist(), &Params::default());
+        let t = to_text(&a);
+        assert!(t.contains("Summary"));
+        assert!(t.contains("Top hotspots"));
+        assert!(t.contains("Ownership concentration"));
+        assert!(t.contains("not people"));
+    }
+
+    #[test]
+    fn truncate_short_and_long() {
+        assert_eq!(truncate("abc", 5), "abc");
+        assert_eq!(truncate("abcdefgh", 4), "…fgh");
+    }
+}
