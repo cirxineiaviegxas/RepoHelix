@@ -80,3 +80,8 @@ $commits = @(
     @{ h='d4000008'; a='bo';  t=1705807800; s='Add logo asset';
        f=@('- - assets/nebula-logo.png','5 0 README.md') }
 )
+
+$sb = New-Object System.Text.StringBuilder
+foreach ($c in $commits) {
+    $auth = $authors[$c.a]
+    [void]$sb.Append($SEP)
