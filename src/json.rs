@@ -169,3 +169,15 @@ fn write_json_string(out: &mut String, s: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn escapes_control_and_quotes() {
+        let v = Json::str("line\nbreak\t\"q\"\\");
+        assert_eq!(v.to_compact(), r#""line\nbreak\t\"q\"\\""#);
+    }
+
+    #[test]
+    fn compact_object_is_stable() {
+        let v = Json::obj(vec![("b", Json::Int(2)), ("a", Json::Int(1))]);
+        // Insertion order is preserved (b before a).
+        assert_eq!(v.to_compact(), r#"{"b":2,"a":1}"#);
