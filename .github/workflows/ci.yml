@@ -54,3 +54,6 @@ jobs:
         working-directory: viewer
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
