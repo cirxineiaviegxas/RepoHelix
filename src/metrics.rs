@@ -448,3 +448,35 @@ fn compute_clusters(history: &History, params: &Params) -> Vec<TemporalCluster> 
             end,
             commits: group.len() as u64,
             files_touched: files.len() as u64,
+            churn,
+        }
+    };
+
+    for c in commits.iter().skip(1) {
+        if c.timestamp - prev > params.cluster_gap_secs {
+            clusters.push(flush(cur_start, cur_end, &cur_commits, clusters.len()));
+            cur_start = c.timestamp;
+            cur_commits.clear();
+        }
+        cur_commits.push(c);
+        cur_end = c.timestamp;
+        prev = c.timestamp;
+    }
+    clusters.push(flush(cur_start, cur_end, &cur_commits, clusters.len()));
+    clusters
+}
+
+fn compute_summary(history: &History, file_stats: &[FileStat]) -> Summary {
+    let mut authors = BTreeSet::new();
+    let mut first = i64::MAX;
+    let mut last = i64::MIN;
+    for c in &history.commits {
+        authors.insert(c.identity().to_string());
+        first = first.min(c.timestamp);
+        last = last.max(c.timestamp);
+    }
+    if history.is_empty() {
+        first = 0;
+        last = 0;
+    }
+    let total_churn: u64 = file_stats.iter().map(|f| f.churn).sum();
