@@ -57,3 +57,18 @@ impl std::fmt::Display for Error {
             Error::NotARepo(p) => write!(f, "'{p}' is not a Git repository"),
             Error::Usage(m) => write!(f, "{m}"),
         }
+    }
+}
+
+impl std::error::Error for Error {}
+
+impl From<git::GitError> for Error {
+    fn from(e: git::GitError) -> Self {
+        Error::Git(e)
+    }
+}
+impl From<std::io::Error> for Error {
+    fn from(e: std::io::Error) -> Self {
+        Error::Io(e)
+    }
+}
