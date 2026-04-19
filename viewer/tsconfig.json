@@ -15,3 +15,5 @@
     "removeComments": false,
     "skipLibCheck": true
   },
+  "include": ["src/**/*.ts"]
+}
