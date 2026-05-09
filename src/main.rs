@@ -62,3 +62,7 @@ fn load_history(
 }
 
 /// Write output either to a file or to stdout.
+fn emit(out: Option<&Path>, content: &str) -> std::io::Result<()> {
+    match out {
+        Some(path) => {
+            if let Some(parent) = path.parent() {
