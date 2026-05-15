@@ -88,3 +88,8 @@
     <text x="134" y="294" text-anchor="end">auth.rs</text>
     <text x="182" y="168" text-anchor="end">Cargo.toml</text>
   </g>
+
+  <!-- Legend -->
+  <g font-size="10" fill="#7fa8a3">
+    <rect x="24" y="486" width="592" height="26" rx="6" fill="#10201e" stroke="#1d3330"/>
+    <line x1="40" y1="499" x2="78" y2="499" stroke="rgb(154,192,110)" stroke-width="3"/>
