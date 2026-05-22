@@ -38,3 +38,6 @@ dependency-free TypeScript viewer.
   core test suite.
 - **Tooling**: `Makefile`, GitHub Actions CI, MIT `LICENSE`.
 
+### Known limitations
+
+- Renames are not followed; a rename appears as a delete + add.
