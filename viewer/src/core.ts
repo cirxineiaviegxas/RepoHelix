@@ -109,3 +109,14 @@ export function ringPoint(
 /** Validate that every link references an in-range node index. */
 export function linksAreValid(data: ViewerData): boolean {
   const n = data.nodes.length;
+  return data.links.every(
+    (l) => l.source >= 0 && l.source < n && l.target >= 0 && l.target < n && l.source !== l.target,
+  );
+}
+
+/** Build the one-line summary string. */
+export function summaryText(data: ViewerData): string {
+  const topNode = [...data.nodes].sort((a, b) => b.churn - a.churn)[0];
+  const topLink = [...data.links].sort((a, b) => b.strength - a.strength)[0];
+  const parts = [
+    `commits: ${data.commits}`,
