@@ -122,3 +122,16 @@ to 1, and `k` distinct identities.
 
 ```
 HHI(f) = Σ p_i²                                  (Herfindahl–Hirschman Index)
+
+concentration(f) = 1                              if k == 1
+                 = (HHI - 1/k) / (1 - 1/k)        otherwise   (normalized to 0..1)
+
+top_share(f)     = largest single p_i
+```
+
+- `concentration = 1.0` means a single identity made every recorded change to
+  the file — the classic **bus factor of one**.
+- `concentration → 0` means change activity is spread evenly across many
+  identities.
+
+The normalization maps an even split to `0` and total concentration to `1`
