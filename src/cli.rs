@@ -227,3 +227,24 @@ pub fn help_text() -> &'static str {
      \n\
      USAGE:\n\
      \x20 repohelix <command> [options]\n\
+     \n\
+     COMMANDS:\n\
+     \x20 analyze        Analyze history and print a JSON or text report\n\
+     \x20 viewer-data    Emit compact JSON for the TypeScript helix viewer\n\
+     \x20 help           Show this help\n\
+     \x20 version        Show version\n\
+     \n\
+     SOURCE (pick one; defaults to --repo .):\n\
+     \x20 --repo <dir>            Analyze a live Git repository\n\
+     \x20 --log <file>           Import a captured/fixture git log file\n\
+     \n\
+     ANALYZE OPTIONS:\n\
+     \x20 --format <json|text>    Output format (default: text)\n\
+     \x20 --compact               Compact JSON (default: pretty)\n\
+     \x20 --max-commits <n>       Limit history depth\n\
+     \x20 --out <file>            Write to file instead of stdout\n\
+     \x20 --min-cochange <n>      Minimum co-change count (default: 2)\n\
+     \x20 --top-cochange <n>      Max co-change pairs (default: 40)\n\
+     \x20 --top-hotspots <n>      Max hotspots (default: 20)\n\
+     \x20 --cluster-gap <secs>    Session gap threshold (default: 21600)\n\
+     \x20 --max-files-cochange <n> Skip huge commits for coupling (default: 40)\n\
