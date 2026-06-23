@@ -544,3 +544,35 @@ mod tests {
     fn cochange_detects_ab_pair() {
         let a = analyze(&sample(), &Params::default());
         let ab = a
+            .co_changes
+            .iter()
+            .find(|p| p.a == "a.rs" && p.b == "b.rs")
+            .expect("a.rs/b.rs should co-change");
+        assert_eq!(ab.together, 2);
+        assert_eq!(ab.count_a, 4);
+        assert_eq!(ab.count_b, 2);
+        // union = 4 + 2 - 2 = 4 -> strength 0.5
+        assert!((ab.strength - 0.5).abs() < 1e-9);
+        // confidence = together / max(count) = 2/4 = 0.5
+        assert!((ab.confidence - 0.5).abs() < 1e-9);
+    }
+
+    #[test]
+    fn ownership_single_author_is_max_concentration() {
+        // c.rs only touched by bob -> concentration 1.0
+        let a = analyze(&sample(), &Params::default());
+        let c = a.ownership.iter().find(|o| o.path == "c.rs").unwrap();
+        assert_eq!(c.authors, 1);
+        assert!((c.concentration - 1.0).abs() < 1e-9);
+        assert!((c.top_share - 1.0).abs() < 1e-9);
+    }
+
+    #[test]
+    fn ownership_shared_lower_concentration() {
+        let a = analyze(&sample(), &Params::default());
+        let f = a.ownership.iter().find(|o| o.path == "a.rs").unwrap();
+        assert_eq!(f.authors, 2);
+        // ada 3, bob 1 -> shares 0.75/0.25, hhi=0.625, norm=(0.625-0.5)/0.5=0.25
+        assert!((f.concentration - 0.25).abs() < 1e-9);
+        assert!((f.top_share - 0.75).abs() < 1e-9);
+    }
