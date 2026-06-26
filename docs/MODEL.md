@@ -135,3 +135,15 @@ top_share(f)     = largest single p_i
   identities.
 
 The normalization maps an even split to `0` and total concentration to `1`
+regardless of how many authors touched the file, so files with different author
+counts are comparable.
+
+The most active identity per file is reported only as an **anonymized label**
+(`author#1`, `author#2`, …), ranked by global activity. Raw names and emails
+never appear in the ownership section; they are used solely as grouping keys.
+
+## Metrics are not personnel judgments
+
+**Read this before drawing any conclusion about a person.**
+
+Every metric in `repohelix` measures *files and change events*. None of them
