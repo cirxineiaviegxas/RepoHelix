@@ -124,3 +124,10 @@ mod tests {
     }
 
     #[test]
+    fn parses_two_commits() {
+        let h = parse_log(&sample_log());
+        assert_eq!(h.commit_count(), 2);
+        let first = &h.commits[0];
+        assert_eq!(first.hash, "abc123");
+        assert_eq!(first.author_name, "Ada Lovelace");
+        assert_eq!(first.author_email, "ada@example.org");
