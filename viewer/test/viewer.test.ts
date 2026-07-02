@@ -89,3 +89,12 @@ test("ringPoint places first slot at top", () => {
   assert.ok(Math.abs(p.y - 50) < 1e-9);
 });
 
+test("linksAreValid accepts good data and rejects bad", () => {
+  assert.equal(linksAreValid(sample()), true);
+  const bad = sample();
+  bad.links = [{ source: 0, target: 99, strength: 1, together: 1 }];
+  assert.equal(linksAreValid(bad), false);
+  const selfLink = sample();
+  selfLink.links = [{ source: 1, target: 1, strength: 1, together: 1 }];
+  assert.equal(linksAreValid(selfLink), false);
+});
