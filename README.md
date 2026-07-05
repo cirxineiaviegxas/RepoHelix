@@ -398,3 +398,27 @@ The Rust suite covers the JSON writer's escaping and float handling, the log
 parser (including binary files and malformed input), every metric against
 hand-computed expectations, CLI argument parsing, and full end-to-end runs
 against the fixture that assert on exact hotspots, coupling, clusters, and
+determinism. The TypeScript suite covers the pure `core` module — colour ramps,
+scaling, ordering, ring geometry, link validation, and summary text.
+
+---
+
+## Design constraints
+
+These are deliberate, self-imposed rules that shape the whole project:
+
+1. **No Rust crates.** The CLI uses only the standard library. This keeps builds
+   instant, the supply chain empty, and the binary tiny.
+2. **No viewer runtime dependencies.** The browser app uses only the DOM and
+   SVG. TypeScript is a build-time convenience, not a runtime requirement.
+3. **No network, ever.** No telemetry, no CDN, no remote fonts or images. The
+   README's images are local SVGs; the viewer loads a local `data.js`.
+4. **Non-interactive git.** Safe to run in scripts and CI without hanging.
+5. **Determinism.** Sorted output everywhere; identical input yields identical
+   bytes.
+
+---
+
+## FAQ
+
+**Does it follow renames?** No — `--no-renames` is used, so a rename appears as a
