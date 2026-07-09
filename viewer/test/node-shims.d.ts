@@ -19,3 +19,4 @@ declare module "node:assert/strict" {
   export default assert;
 }
 
+declare const console: {
