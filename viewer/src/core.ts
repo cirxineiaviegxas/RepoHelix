@@ -120,3 +120,15 @@ export function summaryText(data: ViewerData): string {
   const topLink = [...data.links].sort((a, b) => b.strength - a.strength)[0];
   const parts = [
     `commits: ${data.commits}`,
+    `files: ${data.nodes.length}`,
+    `span: ${data.span_days}d`,
+    `sessions: ${data.clusters.length}`,
+    topNode ? `hotspot: ${basename(topNode.path)}` : "",
+    topLink
+      ? `top coupling: ${basename(data.nodes[topLink.source].path)}↔${basename(
+          data.nodes[topLink.target].path,
+        )} (${topLink.strength.toFixed(2)})`
+      : "",
+  ].filter(Boolean);
+  return parts.join("   ·   ");
+}
