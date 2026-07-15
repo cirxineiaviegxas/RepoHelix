@@ -90,3 +90,12 @@ fn json_report_declares_it_is_not_a_personnel_judgment() {
     assert!(json.contains("personnel judgments") || json.contains("not measures"));
 }
 
+#[test]
+fn max_commits_limits_history() {
+    let history = load_from_log(fixture_path(), Some(4)).unwrap();
+    assert_eq!(history.commit_count(), 4);
+}
+
+#[test]
+fn viewer_links_have_valid_node_indices() {
+    let history = load_from_log(fixture_path(), None).unwrap();
