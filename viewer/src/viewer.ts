@@ -176,3 +176,39 @@ export function renderAtlas(
       `strength ${link.strength.toFixed(2)} · together ${link.together}`;
     path.appendChild(title);
     svg.appendChild(path);
+  });
+
+  ring.forEach((p, i) => {
+    const node = nodes[i];
+    const r = churnRadius(node.churn, maxC) * 0.8 + 2;
+    const dot = el("circle", {
+      cx: p.x,
+      cy: p.y,
+      r,
+      fill: concentrationColour(node.concentration),
+      stroke: "#0d1b1a",
+      "stroke-width": 1,
+    });
+    const title = el("title");
+    title.textContent = `${node.path}\nchurn ${node.churn} · commits ${node.commits}`;
+    dot.appendChild(title);
+    svg.appendChild(dot);
+
+    if (node.churn >= maxC * 0.15) {
+      const outward = 14;
+      const lx = cx + Math.cos(p.angle) * (radius + outward);
+      const ly = cy + Math.sin(p.angle) * (radius + outward);
+      const anchor =
+        Math.cos(p.angle) < -0.1 ? "end" : Math.cos(p.angle) > 0.1 ? "start" : "middle";
+      const label = el("text", {
+        x: lx,
+        y: ly,
+        "font-size": 9,
+        fill: "#cfe8e6",
+        "font-family": "monospace",
+        "text-anchor": anchor,
+      });
+      label.textContent = basename(node.path);
+      svg.appendChild(label);
+    }
+  });
