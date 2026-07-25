@@ -85,3 +85,8 @@ $sb = New-Object System.Text.StringBuilder
 foreach ($c in $commits) {
     $auth = $authors[$c.a]
     [void]$sb.Append($SEP)
+    [void]$sb.Append($c.h + $FS + $auth[0] + $FS + $auth[1] + $FS + $c.t + $FS + $c.s + "`n")
+    foreach ($row in $c.f) {
+        # Convert the space-delimited spec into tab-delimited numstat.
+        $parts = $row -split ' ', 3
+        [void]$sb.Append($parts[0] + "`t" + $parts[1] + "`t" + $parts[2] + "`n")
