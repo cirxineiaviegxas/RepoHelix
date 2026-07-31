@@ -248,3 +248,24 @@ pub fn help_text() -> &'static str {
      \x20 --top-hotspots <n>      Max hotspots (default: 20)\n\
      \x20 --cluster-gap <secs>    Session gap threshold (default: 21600)\n\
      \x20 --max-files-cochange <n> Skip huge commits for coupling (default: 40)\n\
+     \n\
+     Metrics describe code and change activity only. They are not measures of\n\
+     individual productivity and must not be used as personnel judgments.\n"
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn s(v: &[&str]) -> Vec<String> {
+        v.iter().map(|x| x.to_string()).collect()
+    }
+
+    #[test]
+    fn defaults_to_help_when_empty() {
+        assert_eq!(parse(&[]).unwrap(), Command::Help);
+    }
+
+    #[test]
+    fn parses_analyze_with_log() {
+        let cmd = parse(&s(&["analyze", "--log", "fixture.log", "--format", "json"])).unwrap();
