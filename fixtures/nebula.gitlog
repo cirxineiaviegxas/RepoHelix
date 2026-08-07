@@ -74,3 +74,9 @@
 REPOHELIX_COMMITd4000004Ada Reyesada@nebula.example1705800600Config: env overrides
 35	20	src/config.rs
 8	3	src/main.rs
+REPOHELIX_COMMITd4000005Ada Reyesada@nebula.example1705802400Docs: architecture notes
+120	10	README.md
+40	0	docs/ARCHITECTURE.md
+REPOHELIX_COMMITd4000006Cy Okaforcy@nebula.example1705804200Add integration tests
+90	0	tests/integration.rs
+15	5	src/lib.rs
