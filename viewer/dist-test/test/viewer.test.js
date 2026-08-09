@@ -71,3 +71,14 @@ test("linksAreValid accepts good data and rejects bad", () => {
     bad.links = [{ source: 0, target: 99, strength: 1, together: 1 }];
     assert.equal(linksAreValid(bad), false);
     const selfLink = sample();
+    selfLink.links = [{ source: 1, target: 1, strength: 1, together: 1 }];
+    assert.equal(linksAreValid(selfLink), false);
+});
+test("summaryText includes headline metrics", () => {
+    const s = summaryText(sample());
+    assert.match(s, /commits: 5/);
+    assert.match(s, /files: 3/);
+    assert.match(s, /hotspot: a\.rs/);
+    assert.match(s, /top coupling: a\.rs↔b\.rs/);
+});
+console.log(`\n${passed} tests passed`);
