@@ -10,3 +10,4 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "tsc -p tsconfig.test.json && node dist-test/test/viewer.test.js"
   },
+  "devDependencies": {
