@@ -422,3 +422,27 @@ These are deliberate, self-imposed rules that shape the whole project:
 ## FAQ
 
 **Does it follow renames?** No — `--no-renames` is used, so a rename appears as a
+delete + add. This is intentional for predictability; rename-following is noted
+as a future option in the CHANGELOG.
+
+**Can it analyze a subdirectory or a single branch?** It analyzes whatever `git
+log` would show for the repo at `--repo`. Check out the branch you want first, or
+capture a scoped fixture log.
+
+**Why is the viewer capped at 64 files?** To keep the payload tiny and the SVG
+legible. The full data is always available in the `analyze` JSON report.
+
+**Is the fixture based on a real project?** No. `nebula` and its authors are
+entirely synthetic. Any resemblance to real people or repositories is
+coincidental.
+
+**Windows / macOS / Linux?** All three. The code is `std`-only Rust and portable
+shell-free logic; the helper scripts are PowerShell (`pwsh` runs cross-platform).
+
+---
+
+## License
+
+MIT — see [`LICENSE`](LICENSE). Changelog in [`CHANGELOG.md`](CHANGELOG.md).
+
+<p align="center"><em>repohelix — the DNA and cartography of a codebase.</em></p>
