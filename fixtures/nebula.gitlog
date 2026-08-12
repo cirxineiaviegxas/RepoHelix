@@ -80,3 +80,9 @@
 REPOHELIX_COMMITd4000006Cy Okaforcy@nebula.example1705804200Add integration tests
 90	0	tests/integration.rs
 15	5	src/lib.rs
+REPOHELIX_COMMITd4000007Dee Marshdee@nebula.example1705806000Fix router edge cases
+30	25	src/router.rs
+20	12	src/handlers.rs
+REPOHELIX_COMMITd4000008Bo Tanakabo@nebula.example1705807800Add logo asset
+-	-	assets/nebula-logo.png
+5	0	README.md
