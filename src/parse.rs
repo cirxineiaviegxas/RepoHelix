@@ -138,3 +138,9 @@ mod tests {
         assert_eq!(first.files[0].removed, Some(2));
     }
 
+    #[test]
+    fn handles_binary_files() {
+        let h = parse_log(&sample_log());
+        let second = &h.commits[1];
+        let logo = second
+            .files
