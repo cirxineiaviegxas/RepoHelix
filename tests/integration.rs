@@ -107,3 +107,12 @@ fn viewer_links_have_valid_node_indices() {
     for key in ["\"source\":", "\"target\":"] {
         let mut idx = 0;
         while let Some(pos) = payload[idx..].find(key) {
+            let start = idx + pos + key.len();
+            let rest = &payload[start..];
+            let end = rest.find([',', '}']).unwrap();
+            let num: usize = rest[..end].parse().unwrap();
+            assert!(num < node_count, "index {num} out of range");
+            idx = start + end;
+        }
+    }
+}
