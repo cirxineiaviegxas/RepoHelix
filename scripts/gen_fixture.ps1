@@ -90,3 +90,8 @@ foreach ($c in $commits) {
         # Convert the space-delimited spec into tab-delimited numstat.
         $parts = $row -split ' ', 3
         [void]$sb.Append($parts[0] + "`t" + $parts[1] + "`t" + $parts[2] + "`n")
+    }
+}
+
+$outDir = Join-Path $PSScriptRoot '..' | Join-Path -ChildPath 'fixtures'
+New-Item -ItemType Directory -Force -Path $outDir | Out-Null
