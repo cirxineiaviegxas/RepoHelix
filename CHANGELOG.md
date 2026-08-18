@@ -44,3 +44,7 @@ dependency-free TypeScript viewer.
 - The viewer renders the 64 busiest files; the full data is in the JSON report.
 
 ### Planned
+
+- Optional rename-following (`git log --follow`-style) behind a flag.
+- Author-alias mapping (`.mailmap`) support for ownership grouping.
+- CSV export for spreadsheet workflows.
