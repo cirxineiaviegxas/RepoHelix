@@ -84,3 +84,10 @@ impl History {
     pub fn distinct_files(&self) -> usize {
         let mut seen = std::collections::BTreeSet::new();
         for c in &self.commits {
+            for f in &c.files {
+                seen.insert(f.path.as_str());
+            }
+        }
+        seen.len()
+    }
+}
