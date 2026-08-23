@@ -290,3 +290,24 @@ mod tests {
 
     #[test]
     fn repo_and_log_conflict() {
+        let err = parse(&s(&["analyze", "--repo", ".", "--log", "x"])).unwrap_err();
+        assert!(err.contains("only one"));
+    }
+
+    #[test]
+    fn unknown_command_errors() {
+        assert!(parse(&s(&["frobnicate"])).is_err());
+    }
+
+    #[test]
+    fn viewer_data_defaults_to_repo_dot() {
+        let cmd = parse(&s(&["viewer-data"])).unwrap();
+        match cmd {
+            Command::ViewerData(o) => assert_eq!(o.source, Source::Repo(PathBuf::from("."))),
+            _ => panic!(),
+        }
+    }
+
+    #[test]
+    fn params_flags_apply() {
+        let cmd = parse(&s(&[
