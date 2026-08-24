@@ -144,3 +144,10 @@ mod tests {
         let second = &h.commits[1];
         let logo = second
             .files
+            .iter()
+            .find(|f| f.path.ends_with("logo.png"))
+            .unwrap();
+        assert!(logo.is_binary());
+        assert_eq!(logo.churn(), 1);
+    }
+
