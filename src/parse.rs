@@ -151,3 +151,10 @@ mod tests {
         assert_eq!(logo.churn(), 1);
     }
 
+    #[test]
+    fn skips_empty_and_malformed() {
+        let raw = format!("{}   \n\n", COMMIT_SEP);
+        let h = parse_log(&raw);
+        assert!(h.is_empty());
+    }
+
