@@ -70,3 +70,8 @@ export function summaryText(data) {
         `sessions: ${data.clusters.length}`,
         topNode ? `hotspot: ${basename(topNode.path)}` : "",
         topLink
+            ? `top coupling: ${basename(data.nodes[topLink.source].path)}↔${basename(data.nodes[topLink.target].path)} (${topLink.strength.toFixed(2)})`
+            : "",
+    ].filter(Boolean);
+    return parts.join("   ·   ");
+}
