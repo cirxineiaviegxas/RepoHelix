@@ -158,3 +158,10 @@ mod tests {
         assert!(h.is_empty());
     }
 
+    #[test]
+    fn distinct_files_count() {
+        let h = parse_log(&sample_log());
+        // engine.rs, lib.rs, logo.png
+        assert_eq!(h.distinct_files(), 3);
+    }
+}
