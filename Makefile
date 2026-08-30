@@ -50,3 +50,14 @@ demo: build ## Text report for the fixture
 	$(CARGO) run --release -- analyze --log $(FIXTURE) --format text
 
 .PHONY: demo-json
+demo-json: build ## JSON report for the fixture
+	$(CARGO) run --release -- analyze --log $(FIXTURE) --format json
+
+.PHONY: viewer-build
+viewer-build: ## Build the TypeScript viewer
+	cd viewer && npm install --no-audit --no-fund && npm run build
+
+.PHONY: viewer-test
+viewer-test: ## Run the TypeScript core tests
+	cd viewer && npm install --no-audit --no-fund && npm test
+
