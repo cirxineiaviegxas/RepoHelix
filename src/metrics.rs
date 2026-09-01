@@ -576,3 +576,36 @@ mod tests {
         assert!((f.concentration - 0.25).abs() < 1e-9);
         assert!((f.top_share - 0.75).abs() < 1e-9);
     }
+
+    #[test]
+    fn clusters_split_on_large_gap() {
+        // c1 at t=100, others near t=3000-4000. Default gap 6h=21600s.
+        // 3000-100 = 2900 < 21600 so actually all one cluster; shrink gap.
+        let p = Params {
+            cluster_gap_secs: 1000,
+            ..Params::default()
+        };
+        let a = analyze(&sample(), &p);
+        // c1(100) isolated, then c2(3000),c3(3500),c4(4000) within 1000 gaps.
+        assert_eq!(a.clusters.len(), 2);
+        assert_eq!(a.clusters[0].commits, 1);
+        assert_eq!(a.clusters[1].commits, 3);
+    }
+
+    #[test]
+    fn summary_totals() {
+        let a = analyze(&sample(), &Params::default());
+        assert_eq!(a.summary.commits, 4);
+        assert_eq!(a.summary.files, 3);
+        assert_eq!(a.summary.authors, 2);
+        assert_eq!(a.summary.first_commit, 100);
+        assert_eq!(a.summary.last_commit, 4000);
+    }
+
+    #[test]
+    fn hotspot_top_is_most_active_file() {
+        let a = analyze(&sample(), &Params::default());
+        assert_eq!(a.hotspots[0].path, "a.rs");
+        assert!(a.hotspots[0].score > 0.0);
+    }
+}
