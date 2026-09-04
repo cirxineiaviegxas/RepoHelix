@@ -193,3 +193,16 @@ mod tests {
     #[test]
     fn non_finite_is_null() {
         assert_eq!(Json::Float(f64::NAN).to_compact(), "null");
+        assert_eq!(Json::Float(f64::INFINITY).to_compact(), "null");
+    }
+
+    #[test]
+    fn pretty_nested() {
+        let v = Json::obj(vec![(
+            "items",
+            Json::Array(vec![Json::Int(1), Json::Int(2)]),
+        )]);
+        let pretty = v.to_pretty();
+        assert!(pretty.contains("\n  \"items\": [\n"));
+    }
+}
