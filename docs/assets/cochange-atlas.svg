@@ -93,3 +93,9 @@
   <g font-size="10" fill="#7fa8a3">
     <rect x="24" y="486" width="592" height="26" rx="6" fill="#10201e" stroke="#1d3330"/>
     <line x1="40" y1="499" x2="78" y2="499" stroke="rgb(154,192,110)" stroke-width="3"/>
+    <text x="86" y="502">strong coupling (0.58)</text>
+    <line x1="250" y1="499" x2="288" y2="499" stroke="rgb(96,198,151)" stroke-width="1.2"/>
+    <text x="296" y="502">weak coupling (0.17)</text>
+    <text x="470" y="502">strength = shared / union of commits</text>
+  </g>
+</svg>
