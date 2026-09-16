@@ -311,3 +311,24 @@ mod tests {
     #[test]
     fn params_flags_apply() {
         let cmd = parse(&s(&[
+            "analyze",
+            "--min-cochange",
+            "5",
+            "--cluster-gap",
+            "999",
+        ]))
+        .unwrap();
+        match cmd {
+            Command::Analyze(o) => {
+                assert_eq!(o.params.min_cochange, 5);
+                assert_eq!(o.params.cluster_gap_secs, 999);
+            }
+            _ => panic!(),
+        }
+    }
+
+    #[test]
+    fn bad_number_errors() {
+        assert!(parse(&s(&["analyze", "--max-commits", "abc"])).is_err());
+    }
+}
