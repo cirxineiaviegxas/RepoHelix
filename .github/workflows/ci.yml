@@ -61,3 +61,6 @@ jobs:
           node-version: 20
 
       - name: Install dev dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Type-check and build
