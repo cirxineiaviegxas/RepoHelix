@@ -17,3 +17,5 @@ Thumbs.db
 
 # Local scratch output
 *.log.json
+/out.json
+/viewer.json
