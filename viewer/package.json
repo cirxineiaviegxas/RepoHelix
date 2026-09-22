@@ -11,3 +11,4 @@
     "test": "tsc -p tsconfig.test.json && node dist-test/test/viewer.test.js"
   },
   "devDependencies": {
+    "typescript": "5.4.5"
