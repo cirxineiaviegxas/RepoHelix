@@ -64,3 +64,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Type-check and build
+        run: npm run build
+
+      - name: Run core tests
+        run: npm test
