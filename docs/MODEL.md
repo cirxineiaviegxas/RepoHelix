@@ -160,3 +160,15 @@ measures a person's productivity, skill, effort, or worth. Specifically:
 - **Hotspots** point at *code* that may warrant refactoring or extra test
   coverage. They say nothing about the authors of that code.
 - **Temporal coupling** describes *files*, not teams.
+
+Using these numbers to rank, reward, or penalize individuals is both a misuse
+of the tool and statistically unsound: the signals are confounded by role,
+tenure, file type, and task assignment. `repohelix` deliberately anonymizes
+identities in its ownership output to make casual misuse harder. Treat the
+output as a map of the *code's* terrain, and direct any action at the code and
+the team's shared practices.
+
+## Determinism
+
+Every collection in the output is sorted by a total order (metric value, then a
+stable tie-break such as path). Given the same input bytes, `repohelix` emits
