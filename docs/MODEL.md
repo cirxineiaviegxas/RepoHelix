@@ -172,3 +172,16 @@ the team's shared practices.
 
 Every collection in the output is sorted by a total order (metric value, then a
 stable tie-break such as path). Given the same input bytes, `repohelix` emits
+the same output bytes. This makes fixture-log demos reproducible and lets the
+integration tests assert on exact structure.
+
+## Complexity
+
+Let `C` be commit count and `F` the average files per commit.
+
+- File stats, churn, ownership, clusters: `O(C · F)`.
+- Co-change: `O(C · F²)` in the worst case, bounded by `--max-files-cochange`
+  which caps `F` per commit for pairing.
+
+For typical repositories (thousands of commits, tens of files per commit) the
+whole analysis runs in well under a second with a flat memory profile.
