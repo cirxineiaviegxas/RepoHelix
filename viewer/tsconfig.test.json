@@ -11,3 +11,5 @@
     "noUnusedParameters": true,
     "skipLibCheck": true
   },
+  "include": ["src/core.ts", "test/viewer.test.ts", "test/node-shims.d.ts"]
+}
