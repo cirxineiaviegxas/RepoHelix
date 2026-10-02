@@ -71,3 +71,7 @@ fn emit(out: Option<&Path>, content: &str) -> std::io::Result<()> {
                 }
             }
             std::fs::write(path, content)?;
+            let _ = writeln!(std::io::stderr(), "wrote {}", path.display());
+            Ok(())
+        }
+        None => {
