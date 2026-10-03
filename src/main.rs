@@ -75,3 +75,8 @@ fn emit(out: Option<&Path>, content: &str) -> std::io::Result<()> {
             Ok(())
         }
         None => {
+            let stdout = std::io::stdout();
+            let mut lock = stdout.lock();
+            lock.write_all(content.as_bytes())?;
+            if !content.ends_with('\n') {
+                lock.write_all(b"\n")?;
