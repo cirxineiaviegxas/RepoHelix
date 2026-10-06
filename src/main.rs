@@ -80,3 +80,8 @@ fn emit(out: Option<&Path>, content: &str) -> std::io::Result<()> {
             lock.write_all(content.as_bytes())?;
             if !content.ends_with('\n') {
                 lock.write_all(b"\n")?;
+            }
+            Ok(())
+        }
+    }
+}
