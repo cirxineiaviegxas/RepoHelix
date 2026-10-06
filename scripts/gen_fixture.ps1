@@ -95,3 +95,9 @@ foreach ($c in $commits) {
 
 $outDir = Join-Path $PSScriptRoot '..' | Join-Path -ChildPath 'fixtures'
 New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+$outFile = Join-Path $outDir 'nebula.gitlog'
+
+# Write with UTF-8 (no BOM) so byte content is exactly as intended.
+$utf8 = New-Object System.Text.UTF8Encoding($false)
+[System.IO.File]::WriteAllText($outFile, $sb.ToString(), $utf8)
+Write-Host "Wrote $outFile ($($commits.Count) commits)"
