@@ -446,3 +446,13 @@ shell-free logic; the helper scripts are PowerShell (`pwsh` runs cross-platform)
 MIT — see [`LICENSE`](LICENSE). Changelog in [`CHANGELOG.md`](CHANGELOG.md).
 
 <p align="center"><em>repohelix — the DNA and cartography of a codebase.</em></p>
+
+## Worked example
+
+```sh
+repohelix render fixtures/nebula.gitlog --format text
+```
+
+The first lines show the strands with the most revisions; the co-change lattice follows,
+ordered by strength. Start with the densest strand (its history has the most rewrites)
+and the strongest lattice pair (those two files resist being changed apart).
