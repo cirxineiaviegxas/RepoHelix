@@ -193,3 +193,11 @@ smaller change count of the two - so it stays within [0, 1] even when one file c
 far more often than the other. Two revisions of a pair count once; merges contribute their
 side branches, not the merge commit itself. The nebula fixture in `fixtures/` exercises
 one asymmetric pair and one symmetric pair; `src/metrics.rs` carries the worked numbers.
+
+## Co-change strength
+
+The strength reported for a pair of files is a decayed co-change count divided by the
+smaller change count of the two - so it stays within [0, 1] even when one file changes
+far more often than the other. Two revisions of a pair count once; merges contribute their
+side branches, not the merge commit itself. The nebula fixture in `fixtures/` exercises
+one asymmetric pair and one symmetric pair; `src/metrics.rs` carries the worked numbers.
