@@ -455,4 +455,5 @@ repohelix render fixtures/nebula.gitlog --format text
 
 The first lines show the strands with the most revisions; the co-change lattice follows,
 ordered by strength. Start with the densest strand (its history has the most rewrites)
-and the strongest lattice pair (those two files resist being changed apart).
+and the strongest lattice pair (those two files resist being changed apart - see
+docs/MODEL.md for how strengths are normalised).
